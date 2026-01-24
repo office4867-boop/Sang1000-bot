@@ -9,7 +9,7 @@ import os
 st.set_page_config(page_title="주식 분석 봇", layout="wide")
 # --- [비밀번호 보안 기능 시작] ---
 # 친구들과 공유할 비밀번호를 여기에 적으세요
-MY_PASSWORD = "wang10ri" 
+MY_PASSWORD = "" 
 
 login_pass = st.sidebar.text_input("🔑 비밀번호를 입력하세요", type="password")
 
