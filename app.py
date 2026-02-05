@@ -95,6 +95,30 @@ def load_data(file_input):
     except Exception as e:
         return None, None, str(e)
 
+@st.cache_data(show_spinner=True, ttl=3600)
+def load_company_overview():
+    """시그널뷰_기업개요.xlsx 또는 .csv 파일을 로드"""
+    try:
+        # 먼저 xlsx 파일 시도
+        xlsx_path = "시그널뷰_기업개요.xlsx"
+        if os.path.exists(xlsx_path):
+            df = pd.read_excel(xlsx_path, engine='openpyxl')
+            # 컬럼명 공백 제거
+            df.columns = df.columns.str.replace(" ", "").str.strip()
+            return df
+        
+        # xlsx가 없으면 csv 파일 시도
+        csv_path = "시그널뷰_기업개요.csv"
+        if os.path.exists(csv_path):
+            df = pd.read_csv(csv_path, encoding='utf-8-sig')
+            # 컬럼명 공백 제거
+            df.columns = df.columns.str.replace(" ", "").str.strip()
+            return df
+        
+        return None
+    except Exception as e:
+        return None
+
 # ---------------------------------------------------------
 # 3. 데이터 로드 로직 (핵심 수정 부분)
 # ---------------------------------------------------------
@@ -148,6 +172,9 @@ df_sangcheon, df_signal, err = load_data(final_file)
 if err:
     st.error(f"오류 발생: {err}")
     st.stop()
+
+# 시그널뷰 기업개요 데이터 로드
+df_company_overview = load_company_overview()
 
 st.success(f"✅ {source_msg}")
 
@@ -452,6 +479,19 @@ if query:
                 st.caption("뉴스 데이터 없음")
         else:
             st.caption("뉴스 데이터 없음")
+        
+        # 시그널뷰 기업개요
+        if df_company_overview is not None and '종목명' in df_company_overview.columns:
+            overview_row = df_company_overview[df_company_overview['종목명'] == query]
+            if not overview_row.empty:
+                # '핵심 요약 (3줄 정리)' 컬럼 찾기 (공백 제거된 컬럼명으로)
+                summary_col = next((c for c in df_company_overview.columns if '핵심요약' in c or '3줄정리' in c or '핵심요약(3줄정리)' in c), None)
+                if summary_col:
+                    summary_text = overview_row.iloc[0][summary_col]
+                    if pd.notna(summary_text) and str(summary_text).strip():
+                        st.markdown("---")
+                        st.subheader("📝 시그널뷰 기업개요")
+                        st.info(str(summary_text))
         
         # 유사 종목
         st.markdown("---")
