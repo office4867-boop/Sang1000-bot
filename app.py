@@ -393,35 +393,45 @@ if query:
         st.subheader(f"📊 {query} 종목 분석")
         st.markdown("")
         
-        c1, c2, c3 = st.columns(3)
-        with c1: 
-            date_str = str(row.get('날짜','-'))
-            if date_str != '-':
-                try:
-                    date_str = date_str[:10] if len(date_str) > 10 else date_str
-                except:
-                    pass
-            st.metric("최근 날짜", date_str)
-        # 상승률을 % 형식으로 변환
-        _, 상승률_표시 = convert_rise_rate(row.get('상승률', '-'))
-        with c2: st.metric("상승률", 상승률_표시)
+        # 기업개요 텍스트 가져오기
+        기업개요_텍스트 = None
+        if df_company_overview is not None and '종목명' in df_company_overview.columns:
+            overview_row = df_company_overview[df_company_overview['종목명'] == query]
+            if not overview_row.empty:
+                # '핵심 요약 (3줄 정리)' 컬럼 찾기 (공백 제거된 컬럼명으로)
+                summary_col = next((c for c in df_company_overview.columns if '핵심요약' in c or '3줄정리' in c or '핵심요약(3줄정리)' in c), None)
+                if summary_col:
+                    summary_text = overview_row.iloc[0][summary_col]
+                    if pd.notna(summary_text) and str(summary_text).strip():
+                        기업개요_텍스트 = str(summary_text)
         
-        # 테마 정보: df_themes에서 가져오기
-        테마_정보 = '-'
+        # 테마 정보 가져오기
+        테마_전체 = None
         if df_themes is not None:
             종목명_검색 = query.strip()
             theme_row = df_themes[df_themes['종목명'].str.strip() == 종목명_검색]
             if not theme_row.empty:
-                테마_정보 = theme_row.iloc[0]['관련테마_전체']
-                if pd.isna(테마_정보):
-                    테마_정보 = '-'
-                else:
-                    테마_정보 = str(테마_정보)
-        else:
-            # df_themes가 없으면 기존 방식 사용
-            테마_정보 = str(row.get('테마','-'))
+                테마_값 = theme_row.iloc[0]['관련테마_전체']
+                if pd.notna(테마_값) and str(테마_값).strip():
+                    테마_전체 = str(테마_값)
         
-        with c3: st.metric("테마", 테마_정보 if len(테마_정보) <= 20 else 테마_정보[:20] + "...")
+        # 기업개요 표시
+        if 기업개요_텍스트:
+            st.markdown(기업개요_텍스트)
+        else:
+            st.caption("기업개요 정보가 없습니다.")
+        
+        st.markdown("---")
+        
+        # 테마 정보를 작은 폰트로 표시
+        if 테마_전체:
+            # 테마를 태그 스타일로 표시 (작은 폰트)
+            st.caption(f"🏷️ {테마_전체}")
+        else:
+            # 테마 정보가 없으면 기존 방식으로 fallback
+            테마_정보 = str(row.get('테마','-'))
+            if 테마_정보 != '-':
+                st.caption(f"🏷️ {테마_정보}")
         
         st.markdown("---")
         
@@ -563,30 +573,6 @@ if query:
                 st.caption("뉴스 데이터 없음")
         else:
             st.caption("뉴스 데이터 없음")
-        
-        # 테마 정보 상세 표시
-        if df_themes is not None:
-            종목명_검색 = query.strip()
-            theme_row = df_themes[df_themes['종목명'].str.strip() == 종목명_검색]
-            if not theme_row.empty:
-                테마_전체 = theme_row.iloc[0]['관련테마_전체']
-                if pd.notna(테마_전체) and str(테마_전체).strip():
-                    st.markdown("---")
-                    st.subheader("🏷️ 관련 테마 정보")
-                    st.info(str(테마_전체))
-        
-        # 시그널뷰 기업개요
-        if df_company_overview is not None and '종목명' in df_company_overview.columns:
-            overview_row = df_company_overview[df_company_overview['종목명'] == query]
-            if not overview_row.empty:
-                # '핵심 요약 (3줄 정리)' 컬럼 찾기 (공백 제거된 컬럼명으로)
-                summary_col = next((c for c in df_company_overview.columns if '핵심요약' in c or '3줄정리' in c or '핵심요약(3줄정리)' in c), None)
-                if summary_col:
-                    summary_text = overview_row.iloc[0][summary_col]
-                    if pd.notna(summary_text) and str(summary_text).strip():
-                        st.markdown("---")
-                        st.subheader("📝 시그널뷰 기업개요")
-                        st.info(str(summary_text))
         
         # 유사 종목
         st.markdown("---")
