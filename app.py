@@ -423,15 +423,41 @@ if query:
         
         st.markdown("---")
         
-        # 테마 정보를 작은 폰트로 표시
+        # 테마 정보를 스타일링하여 표시
         if 테마_전체:
-            # 테마를 태그 스타일로 표시 (작은 폰트)
-            st.caption(f"🏷️ {테마_전체}")
+            # 테마 텍스트를 포맷팅 (태그 사이에 간격 추가)
+            테마_포맷팅 = 테마_전체.replace('#', ' #').strip()
+            if 테마_포맷팅.startswith(' '):
+                테마_포맷팅 = 테마_포맷팅[1:]  # 맨 앞 공백 제거
+            
+            st.markdown(
+                f"""
+                <div style='background-color: #f0f2f6; padding: 12px 15px; border-radius: 5px; margin: 5px 0;'>
+                    <p style='color: #000000; font-size: 17px; margin: 0; line-height: 1.6;'>
+                        🏷️ <span style='color: #000000;'>{테마_포맷팅}</span>
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
         else:
             # 테마 정보가 없으면 기존 방식으로 fallback
             테마_정보 = str(row.get('테마','-'))
             if 테마_정보 != '-':
-                st.caption(f"🏷️ {테마_정보}")
+                테마_포맷팅 = 테마_정보.replace('#', ' #').strip()
+                if 테마_포맷팅.startswith(' '):
+                    테마_포맷팅 = 테마_포맷팅[1:]
+                
+                st.markdown(
+                    f"""
+                    <div style='background-color: #f0f2f6; padding: 12px 15px; border-radius: 5px; margin: 5px 0;'>
+                        <p style='color: #000000; font-size: 17px; margin: 0; line-height: 1.6;'>
+                            🏷️ <span style='color: #000000;'>{테마_포맷팅}</span>
+                        </p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
         
         st.markdown("---")
         
