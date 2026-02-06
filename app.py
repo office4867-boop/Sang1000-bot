@@ -119,6 +119,57 @@ def load_company_overview():
     except Exception as e:
         return None
 
+@st.cache_data(show_spinner=True, ttl=3600)
+def load_theme_data():
+    """시그널뷰_관련테마.xlsx 파일을 로드"""
+    try:
+        theme_path = "시그널뷰_관련테마.xlsx"
+        if os.path.exists(theme_path):
+            df = pd.read_excel(theme_path, engine='openpyxl')
+            # 컬럼명 공백 제거 및 표준화
+            df.columns = df.columns.str.replace(" ", "").str.strip()
+            
+            # 종목명 컬럼 찾기 (A열)
+            종목명_col = None
+            for col in df.columns:
+                if '종목명' in col or col == '종목명':
+                    종목명_col = col
+                    break
+            
+            # 관련테마_전체 컬럼 찾기 (B열)
+            테마_col = None
+            for col in df.columns:
+                if '관련테마_전체' in col or '관련테마전체' in col or col == '관련테마_전체':
+                    테마_col = col
+                    break
+            
+            if 종목명_col is None or 테마_col is None:
+                # 컬럼을 찾지 못한 경우 첫 번째와 두 번째 컬럼 사용
+                if len(df.columns) >= 2:
+                    df.columns = ['종목명', '관련테마_전체'] + list(df.columns[2:])
+                    종목명_col = '종목명'
+                    테마_col = '관련테마_전체'
+                else:
+                    return None
+            
+            # 종목명 기준으로 중복 제거 (첫 번째 값 유지)
+            df = df.drop_duplicates(subset=[종목명_col], keep='first')
+            
+            # 결측치 처리: 종목명이 없는 행 제거
+            df = df[df[종목명_col].notna()]
+            
+            # 종목명 공백 제거
+            df[종목명_col] = df[종목명_col].astype(str).str.strip()
+            
+            # 컬럼명 표준화
+            df.rename(columns={종목명_col: '종목명', 테마_col: '관련테마_전체'}, inplace=True)
+            
+            return df[['종목명', '관련테마_전체']]
+        
+        return None
+    except Exception as e:
+        return None
+
 # ---------------------------------------------------------
 # 3. 데이터 로드 로직 (핵심 수정 부분)
 # ---------------------------------------------------------
@@ -176,6 +227,9 @@ if err:
 # 시그널뷰 기업개요 데이터 로드
 df_company_overview = load_company_overview()
 
+# 시그널뷰 관련테마 데이터 로드
+df_themes = load_theme_data()
+
 st.success(f"✅ {source_msg}")
 
 # ---------------------------------------------------------
@@ -200,20 +254,23 @@ if 'force_stock_search' not in st.session_state:
 if st.session_state.selected_stock_name or st.session_state.force_stock_search:
     # selected_stock_name이 있거나 force_stock_search가 True면 종목명 검색 모드로 설정
     # radio 위젯의 기본값을 종목명 검색(index=0)으로 설정
-    if 'search_mode' not in st.session_state or st.session_state.search_mode != "종목명 검색":
-        st.session_state.search_mode = "종목명 검색"
-    search_mode = st.radio("검색 모드", ["종목명 검색", "키워드 검색"], horizontal=True, key="search_mode", index=0)
+    if 'search_mode' not in st.session_state or st.session_state.search_mode != "종목명":
+        st.session_state.search_mode = "종목명"
+    search_mode = st.radio("검색 모드", ["종목명", "테마"], horizontal=True, key="search_mode", index=0)
     st.session_state.force_stock_search = False  # 사용 후 초기화
 else:
     # 검색 모드 선택
-    search_mode = st.radio("검색 모드", ["종목명 검색", "키워드 검색"], horizontal=True, key="search_mode")
+    if 'search_mode' not in st.session_state:
+        st.session_state.search_mode = "종목명"
+    search_mode = st.radio("검색 모드", ["종목명", "테마"], horizontal=True, key="search_mode")
 
 # 변수 초기화
 query = None
 keyword_query = None
 keyword_results = None
+theme_results = None
 
-if search_mode == "종목명 검색":
+if search_mode == "종목명":
     # 버튼 클릭으로 선택된 종목이 있으면 우선 사용
     if st.session_state.selected_stock_name:
         query = st.session_state.selected_stock_name
@@ -259,52 +316,63 @@ if search_mode == "종목명 검색":
         elif search_query and search_query in stock_list:
             query = search_query
 
-else:  # 키워드 검색
-    keyword_query = st.text_input("🔍 키워드 검색", placeholder="예: 반도체, AI, 배터리...", key="keyword_search")
+else:  # 테마 검색
+    theme_query = st.text_input("🔍 테마 검색", placeholder="예: 스페이스, 반도체, AI...", key="theme_search")
     
-    if keyword_query:
-        # 키워드가 포함된 종목 찾기 (상승이유 컬럼에서 검색)
-        keyword_lower = keyword_query.lower()
+    if theme_query and df_themes is not None:
+        # 테마 검색어를 소문자로 변환
+        theme_lower = theme_query.lower()
         
-        # 각 종목별로 키워드가 나타나는 횟수 계산
-        stock_keyword_count = {}
+        # 관련테마_전체 컬럼에서 검색어가 포함된 종목 찾기
+        matched_stocks = []
         
-        for _, row in df_sangcheon.iterrows():
+        for _, row in df_themes.iterrows():
             종목명 = row.get('종목명', '')
-            상승이유 = row.get('상승이유', '')
+            관련테마 = row.get('관련테마_전체', '')
             
-            if pd.notna(종목명) and pd.notna(상승이유):
-                종목명_str = str(종목명)
-                상승이유_str = str(상승이유).lower()
+            if pd.notna(종목명) and pd.notna(관련테마):
+                종목명_str = str(종목명).strip()
+                관련테마_str = str(관련테마).lower()
                 
-                # 키워드가 상승이유에 포함되어 있는지 확인
-                if keyword_lower in 상승이유_str:
-                    if 종목명_str not in stock_keyword_count:
-                        stock_keyword_count[종목명_str] = 0
-                    stock_keyword_count[종목명_str] += 1
+                # 검색어가 관련테마에 포함되어 있는지 확인
+                if theme_lower in 관련테마_str:
+                    matched_stocks.append(종목명_str)
         
-        # 반복횟수 기준으로 정렬
-        if stock_keyword_count:
-            sorted_stocks = sorted(stock_keyword_count.items(), key=lambda x: x[1], reverse=True)
-            keyword_results = sorted_stocks[:10]  # 최대 10개
+        if matched_stocks:
+            # 중복 제거 및 정렬
+            matched_stocks = sorted(list(set(matched_stocks)))
+            theme_results = matched_stocks
         else:
-            st.warning(f"'{keyword_query}' 키워드가 포함된 종목을 찾을 수 없습니다.")
+            st.warning(f"'{theme_query}' 테마가 포함된 종목을 찾을 수 없습니다.")
+    elif theme_query and df_themes is None:
+        st.warning("테마 데이터를 불러올 수 없습니다. '시그널뷰_관련테마.xlsx' 파일을 확인해주세요.")
 
-# 키워드 검색 결과 표시
-if keyword_results:
+# 테마 검색 결과 표시
+if theme_results:
     st.markdown("---")
-    st.subheader(f"🔍 키워드 '{keyword_query}' 검색 결과 (반복횟수 순)")
+    st.subheader(f"🔍 테마 '{theme_query}' 검색 결과 ({len(theme_results)}개)")
     
-    for idx, (종목명, 반복횟수) in enumerate(keyword_results, 1):
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            if st.button(f"{idx}. {종목명} (반복횟수: {반복횟수}회)", key=f"kw_{idx}", use_container_width=True):
+    # 결과가 많으면 그리드로 표시, 적으면 리스트로 표시
+    if len(theme_results) > 10:
+        # 그리드 레이아웃 (3열)
+        cols_per_row = 3
+        for i in range(0, len(theme_results), cols_per_row):
+            cols = st.columns(cols_per_row)
+            for j, 종목명 in enumerate(theme_results[i:i+cols_per_row]):
+                with cols[j]:
+                    if st.button(종목명, key=f"theme_{i+j}", use_container_width=True):
+                        # 버튼 클릭 시 해당 종목으로 검색
+                        st.session_state.selected_stock_name = 종목명
+                        st.session_state.force_stock_search = True  # 종목명 검색 모드로 강제 전환
+                        st.rerun()
+    else:
+        # 리스트 레이아웃
+        for idx, 종목명 in enumerate(theme_results, 1):
+            if st.button(f"{idx}. {종목명}", key=f"theme_{idx}", use_container_width=True):
                 # 버튼 클릭 시 해당 종목으로 검색
                 st.session_state.selected_stock_name = 종목명
                 st.session_state.force_stock_search = True  # 종목명 검색 모드로 강제 전환
                 st.rerun()
-        with col2:
-            st.caption(f"{반복횟수}회")
 
 if query:
     # 해당 종목의 모든 데이터 찾기 (날짜 기준)
@@ -337,7 +405,23 @@ if query:
         # 상승률을 % 형식으로 변환
         _, 상승률_표시 = convert_rise_rate(row.get('상승률', '-'))
         with c2: st.metric("상승률", 상승률_표시)
-        with c3: st.metric("테마", str(row.get('테마','-')))
+        
+        # 테마 정보: df_themes에서 가져오기
+        테마_정보 = '-'
+        if df_themes is not None:
+            종목명_검색 = query.strip()
+            theme_row = df_themes[df_themes['종목명'].str.strip() == 종목명_검색]
+            if not theme_row.empty:
+                테마_정보 = theme_row.iloc[0]['관련테마_전체']
+                if pd.isna(테마_정보):
+                    테마_정보 = '-'
+                else:
+                    테마_정보 = str(테마_정보)
+        else:
+            # df_themes가 없으면 기존 방식 사용
+            테마_정보 = str(row.get('테마','-'))
+        
+        with c3: st.metric("테마", 테마_정보 if len(테마_정보) <= 20 else 테마_정보[:20] + "...")
         
         st.markdown("---")
         
@@ -479,6 +563,17 @@ if query:
                 st.caption("뉴스 데이터 없음")
         else:
             st.caption("뉴스 데이터 없음")
+        
+        # 테마 정보 상세 표시
+        if df_themes is not None:
+            종목명_검색 = query.strip()
+            theme_row = df_themes[df_themes['종목명'].str.strip() == 종목명_검색]
+            if not theme_row.empty:
+                테마_전체 = theme_row.iloc[0]['관련테마_전체']
+                if pd.notna(테마_전체) and str(테마_전체).strip():
+                    st.markdown("---")
+                    st.subheader("🏷️ 관련 테마 정보")
+                    st.info(str(테마_전체))
         
         # 시그널뷰 기업개요
         if df_company_overview is not None and '종목명' in df_company_overview.columns:
