@@ -94,13 +94,18 @@ if st.session_state.selected_stock_name:
     # 라디오 버튼 상태도 직접 업데이트 (Streamlit 위젯 상태)
     st.session_state.search_mode_radio = "종목명"
 
+# 검색 모드 변경 시 초기화 콜백
+def reset_search_state():
+    st.session_state.current_query = None
+
 # 검색 모드 라디오 버튼
 search_mode = st.radio(
     "검색 모드", 
     ["종목명", "테마"], 
     horizontal=True, 
     key="search_mode_radio", 
-    index=0 if st.session_state.search_mode == "종목명" else 1
+    index=0 if st.session_state.search_mode == "종목명" else 1,
+    on_change=reset_search_state
 )
 st.session_state.search_mode = search_mode
 
@@ -144,9 +149,11 @@ if search_mode == "종목명":
             if selected_stock:
                 st.session_state.current_query = selected_stock
                 query = selected_stock
+                st.rerun()
             elif search_query and search_query in stock_list:
                 st.session_state.current_query = search_query
                 query = search_query
+                st.rerun()
         else:
             if search_query:
                 st.warning(f"'{search_query}'와 일치하는 종목이 없습니다.")
