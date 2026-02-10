@@ -4,7 +4,7 @@ import os
 from app_utils import (
     LIMIT_UP_THRESHOLD, MAX_SEARCH_RESULTS,
     clean_columns, convert_rise_rate, format_date, render_theme_badge,
-    find_repo_file, load_data, load_company_overview, load_theme_data
+    find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data
 )
 
 # ---------------------------------------------------------
@@ -64,6 +64,7 @@ if err:
 # 보조 데이터 로드
 df_company_overview = load_company_overview()
 df_themes = load_theme_data()
+df_analysis = load_analysis_data()
 
 st.success(f"✅ {source_msg}")
 
@@ -291,6 +292,13 @@ if query:
                     if pd.notna(val):
                         summary_text = str(val)
         
+        if summary_text is None and df_themes is not None and '종목명' in df_themes.columns:
+            theme_sum_row = df_themes[df_themes['종목명'] == query]
+            if not theme_sum_row.empty and '핵심요약' in df_themes.columns:
+                val = theme_sum_row.iloc[0]['핵심요약']
+                if pd.notna(val):
+                    summary_text = str(val)
+
         if summary_text:
             st.markdown(summary_text)
         else:
@@ -370,22 +378,23 @@ if query:
         else:
             st.caption("과거 상한가 이력이 없습니다.")
             
-        # 5. 뉴스 및 유사 종목
+        # 5. 테마별 상세 분석 (뉴스 대체)
         st.markdown("---")
-        st.subheader("📝 종목 설명 & 뉴스")
-        if df_signal is not None and '종목명' in df_signal.columns:
-            news_col = next((c for c in ['주요뉴스','뉴스','내용'] if c in df_signal.columns), None)
-            if news_col:
-                news_df = df_signal[df_signal['종목명'] == query]
-                if not news_df.empty:
-                    for _, r in news_df.iterrows():
-                        st.write(f"• {r[news_col]}")
-                else:
-                    st.caption("관련 뉴스가 없습니다.")
-            else:
-                st.caption("뉴스 컬럼을 찾을 수 없습니다.")
-        else:
-            st.caption("뉴스 데이터가 없습니다.")
+        st.subheader("📝 테마별 상세 분석")
+        
+        found_analysis = False
+        if df_analysis is not None and '종목명' in df_analysis.columns:
+            analysis_rows = df_analysis[df_analysis['종목명'] == query]
+            if not analysis_rows.empty:
+                found_analysis = True
+                for _, r in analysis_rows.iterrows():
+                    theme_name = r.get('테마명', '-')
+                    content = r.get('분석결과', '-')
+                    with st.expander(f"📌 {theme_name}", expanded=True):
+                        st.write(content)
+        
+        if not found_analysis:
+            st.caption("해당 종목의 상세 분석 데이터가 없습니다.")
             
         st.markdown("---")
         st.subheader("🔗 유사 종목 (같은 테마)")

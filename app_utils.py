@@ -233,11 +233,14 @@ def load_company_overview():
 
 @st.cache_data(show_spinner=True, ttl=CACHE_TTL)
 def load_theme_data():
-    """시그널뷰_관련테마.xlsx 파일을 로드 (캐싱 적용)"""
+    """시그널뷰_종목정리_핵심정리 및 테마.xlsx 파일을 로드 (캐싱 적용)"""
     try:
-        theme_path = "시그널뷰_관련테마.xlsx"
+        theme_path = "시그널뷰_종목정리_핵심정리 및 테마.xlsx"
         if not os.path.exists(theme_path):
-            return None
+            # 폴백: 기존 파일 시도
+            theme_path = "시그널뷰_관련테마.xlsx"
+            if not os.path.exists(theme_path):
+                return None
         
         # 캐시 확인
         cache_path = get_cache_path(theme_path)
@@ -252,27 +255,64 @@ def load_theme_data():
         if '종목명' not in df.columns:
             df.rename(columns={df.columns[0]: '종목명'}, inplace=True)
         
-        # 테마_전체 컬럼 확인
+        # 테마_전체 컬럼 확인 (새 파일에서는 '테마' 또는 '관련테마'로 되어 있을 수 있음)
         if '테마_전체' not in df.columns:
-            theme_col = next((c for c in df.columns if '테마' in c and '전체' in c), None)
+            theme_col = next((c for c in df.columns if any(k in c for k in ['관련테마', '테마'])), None)
             if theme_col:
                 df.rename(columns={theme_col: '테마_전체'}, inplace=True)
-            elif len(df.columns) >= 2:
-                df.rename(columns={df.columns[1]: '테마_전체'}, inplace=True)
-            else:
-                return None
+        
+        # 핵심요약 컬럼 확인
+        summary_col = next((c for c in df.columns if '핵심요약' in c), None)
+        if summary_col and summary_col != '핵심요약':
+            df.rename(columns={summary_col: '핵심요약'}, inplace=True)
         
         # 필요한 컬럼만 선택 및 정리
+        cols_to_keep = ['종목명', '테마_전체']
+        if '핵심요약' in df.columns:
+            cols_to_keep.append('핵심요약')
+            
         if '종목명' in df.columns and '테마_전체' in df.columns:
             df = df.dropna(subset=['종목명'])
             df['종목명'] = df['종목명'].astype(str).str.strip()
             df = df.drop_duplicates(subset=['종목명'], keep='first')
-            result = df[['종목명', '테마_전체']]
+            result = df[cols_to_keep]
             
             # 캐시에 저장
             save_to_cache(cache_path, result)
             return result
             
         return None
+    except Exception as e:
+        return None
+
+@st.cache_data(show_spinner=True, ttl=CACHE_TTL)
+def load_analysis_data():
+    """시그널뷰_테마별 기업개요.xlsx 파일을 로드 (캐싱 적용)"""
+    try:
+        path = "시그널뷰_테마별 기업개요.xlsx"
+        if not os.path.exists(path):
+            return None
+        
+        cache_path = get_cache_path(path)
+        cached = load_from_cache(cache_path, path)
+        if cached is not None:
+            return cached
+            
+        df = pd.read_excel(path, engine='openpyxl')
+        df = clean_columns(df)
+        
+        # 표준화
+        if '종목명' not in df.columns:
+            df.rename(columns={df.columns[0]: '종목명'}, inplace=True)
+        if '테마명' not in df.columns:
+            theme_col = next((c for c in df.columns if '테마' in c), None)
+            if theme_col: df.rename(columns={theme_col: '테마명'}, inplace=True)
+        if '분석결과' not in df.columns:
+            res_col = next((c for c in df.columns if '분석' in c or '내용' in c), None)
+            if res_col: df.rename(columns={res_col: '분석결과'}, inplace=True)
+            
+        # 캐시에 저장
+        save_to_cache(cache_path, df)
+        return df
     except Exception as e:
         return None
