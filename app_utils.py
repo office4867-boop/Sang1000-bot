@@ -123,14 +123,14 @@ def render_theme_badge(theme_text):
 
 def find_repo_file():
     """기본 엑셀 파일을 재귀적으로 검색하여 찾음"""
-    # [1] 명시적인 새 파일명 우선
-    exact_pattern = "**/시그널뷰_종목정리_핵심정리 및 테마.xlsx"
+    # [1] 명시적인 새 파일명 우선 (순서 변경: 종목정리_종목순 정렬.xlsx 우선)
+    exact_pattern = "**/종목정리_종목순 정렬.xlsx"
     exact_files = glob.glob(exact_pattern, recursive=True)
     if exact_files:
         return exact_files[0]
         
-    # [2] 기존 주력 파일명
-    exact_pattern_old = "**/종목정리_종목순 정렬.xlsx"
+    # [2] 기존 주력 파일명 (순서 변경: 시그널뷰_... 후순위)
+    exact_pattern_old = "**/시그널뷰_종목정리_핵심정리 및 테마.xlsx"
     exact_files_old = glob.glob(exact_pattern_old, recursive=True)
     if exact_files_old:
         return exact_files_old[0]
