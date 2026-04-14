@@ -26,7 +26,7 @@ jobs:
 
       - name: 패키지 설치
         run: |
-          pip install --quiet pandas openpyxl FinanceDataReader requests
+          pip install --quiet pandas openpyxl finance-datareader requests
 
       - name: 사명 변경 스크립트 실행
         env:
