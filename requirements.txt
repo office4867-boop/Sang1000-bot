@@ -3,5 +3,3 @@ pandas
 openpyxl
 python-dotenv
 google-genai
-FinanceDataReader
-requests
