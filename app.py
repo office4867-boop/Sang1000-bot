@@ -4,7 +4,8 @@ import os
 from app_utils import (
     LIMIT_UP_THRESHOLD, MAX_SEARCH_RESULTS,
     clean_columns, convert_rise_rate, format_date, render_theme_badge,
-    find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data
+    find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data,
+    load_name_aliases
 )
 
 # ---------------------------------------------------------
@@ -65,6 +66,7 @@ if err:
 df_company_overview = load_company_overview()
 df_themes = load_theme_data()
 df_analysis = load_analysis_data()
+name_aliases = load_name_aliases()  # {구 사명: 현재 사명}
 
 st.success(f"✅ {source_msg}")
 
@@ -78,6 +80,16 @@ if '종목명' not in df_sangcheon.columns:
 # 종목명 리스트 추출
 stock_list = df_sangcheon['종목명'].dropna().unique().tolist()
 stock_list = sorted([str(s) for s in stock_list if pd.notna(s)])
+
+# 사명 변경 별칭 맵 구성
+# alias_display_map: "수산중공업 (→ 수산세보틱스)" → "수산세보틱스"  (검색 선택용)
+# current_to_old:   "수산세보틱스" → "수산중공업"                    (상세 표시용)
+alias_display_map = {
+    f"{old} (→ {new})": new
+    for old, new in name_aliases.items()
+    if new in stock_list
+}
+current_to_old = {new: old for old, new in name_aliases.items()}
 
 # 세션 상태 초기화
 if 'selected_stock_name' not in st.session_state:
@@ -128,28 +140,37 @@ if search_mode == "종목명":
         # 검색어 입력
         search_query = st.text_input("🔍 종목명 검색 (자동완성)", placeholder="예: 삼성전자...", key="stock_search")
         
-        # 필터링
+        # 필터링 (현재 사명 + 구 사명 별칭 동시 검색)
         filtered_stocks = stock_list
+        filtered_aliases = []
         if search_query:
             search_lower = search_query.lower()
             filtered_stocks = [s for s in stock_list if search_lower in s.lower()]
-        
-        if len(filtered_stocks) > MAX_SEARCH_RESULTS:
-            filtered_stocks = filtered_stocks[:MAX_SEARCH_RESULTS]
+            # 구 사명으로도 검색 가능 ("수산중공업 (→ 수산세보틱스)" 형태로 표시)
+            filtered_aliases = [
+                display for display in alias_display_map
+                if search_lower in display.lower()
+            ]
+
+        all_options = filtered_stocks + filtered_aliases
+        if len(all_options) > MAX_SEARCH_RESULTS:
+            all_options = all_options[:MAX_SEARCH_RESULTS]
             st.info(f"💡 검색 결과가 많아 {MAX_SEARCH_RESULTS}개만 표시됩니다.")
-        
+
         # 종목 선택
-        if filtered_stocks:
+        if all_options:
             selected_stock = st.selectbox(
                 "📋 종목 선택",
-                options=[""] + filtered_stocks,
+                options=[""] + all_options,
                 format_func=lambda x: "종목을 선택하세요..." if x == "" else x,
                 key="stock_select"
             )
-            
+
             if selected_stock:
-                st.session_state.current_query = selected_stock
-                query = selected_stock
+                # 별칭 선택 시 현재 사명으로 변환
+                actual = alias_display_map.get(selected_stock, selected_stock)
+                st.session_state.current_query = actual
+                query = actual
                 st.rerun()
             elif search_query and search_query in stock_list:
                 st.session_state.current_query = search_query
@@ -278,7 +299,10 @@ if query:
         row = res.iloc[0]
         
         st.markdown("---")
+        old_name = current_to_old.get(query)
         st.subheader(f"📊 {query} 종목 분석")
+        if old_name:
+            st.caption(f"구 사명: {old_name}")
         
         # 1. 기업개요
         summary_text = None

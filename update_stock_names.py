@@ -27,6 +27,9 @@ DART_API_KEY = os.environ.get('DART_API_KEY', '')
 # 이름→코드 누적 매핑 파일 (구 사명도 계속 추적하기 위해 repo에 저장)
 CODE_MAP_FILE = 'stock_code_map.json'
 
+# 구 사명→현재 사명 누적 이력 (앱 검색에서 구 사명으로도 찾을 수 있도록)
+ALIASES_FILE = 'name_aliases.json'
+
 # 업데이트 대상 Excel 파일 목록
 EXCEL_FILES = [
     '종목정리_종목순 정렬.xlsx',
@@ -99,6 +102,20 @@ def save_code_map(mapping: dict):
     """이름→코드 누적 매핑 저장"""
     with open(CODE_MAP_FILE, 'w', encoding='utf-8') as f:
         json.dump(mapping, f, ensure_ascii=False, indent=2)
+
+
+def load_aliases() -> dict:
+    """구 사명→현재 사명 누적 이력 로드"""
+    if os.path.exists(ALIASES_FILE):
+        with open(ALIASES_FILE, encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
+
+def save_aliases(aliases: dict):
+    """구 사명→현재 사명 누적 이력 저장"""
+    with open(ALIASES_FILE, 'w', encoding='utf-8') as f:
+        json.dump(aliases, f, ensure_ascii=False, indent=2)
 
 
 # ── Excel 처리 ─────────────────────────────────────────────────
@@ -228,6 +245,14 @@ def main():
     # 7) 매핑 파일 저장
     save_code_map(code_map)
     print(f"[7] 매핑 저장 완료: {len(code_map)}개 종목")
+
+    # 8) 사명 변경 이력(alias) 누적 저장
+    if name_changes:
+        aliases = load_aliases()
+        aliases.update(name_changes)
+        save_aliases(aliases)
+        print(f"[8] 사명 이력 저장 완료: 누적 {len(aliases)}건")
+
     print(f"\n{'='*55}  완료\n")
 
 

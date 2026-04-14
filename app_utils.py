@@ -293,6 +293,19 @@ def load_theme_data():
     except Exception as e:
         return None
 
+@st.cache_data(show_spinner=False, ttl=CACHE_TTL)
+def load_name_aliases():
+    """name_aliases.json 로드 — {구 사명: 현재 사명} 누적 매핑"""
+    import json
+    path = "name_aliases.json"
+    if os.path.exists(path):
+        try:
+            with open(path, encoding='utf-8') as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
 @st.cache_data(show_spinner=True, ttl=CACHE_TTL)
 def load_analysis_data():
     """시그널뷰_테마별 기업개요.xlsx 파일을 로드 (캐싱 적용)"""
