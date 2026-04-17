@@ -40,7 +40,8 @@ EXCEL_FILES = [
     'stock_combined.xlsx',
 ]
 
-NAME_COL = '종목명'
+# 종목명 컬럼 후보 (공백 제거 후 비교): 종목명, 종목 이름, 종목
+NAME_COLS = ['종목명', '종목이름', '종목']
 
 
 # ── 데이터 수집 ────────────────────────────────────────────────
@@ -121,17 +122,20 @@ def save_aliases(aliases: dict):
 # ── Excel 처리 ─────────────────────────────────────────────────
 
 def get_all_stock_names() -> set:
-    """모든 Excel 파일에서 종목명 수집"""
+    """모든 Excel 파일의 전체 시트에서 종목명 수집"""
     names = set()
     for path in EXCEL_FILES:
         if not os.path.exists(path):
             continue
         try:
-            df = pd.read_excel(path, engine='openpyxl')
-            df.columns = df.columns.str.replace(' ', '').str.strip()
-            if NAME_COL in df.columns:
-                found = df[NAME_COL].dropna().astype(str).str.strip().unique()
-                names.update(found)
+            xl = pd.ExcelFile(path, engine='openpyxl')
+            for sheet in xl.sheet_names:
+                df = xl.parse(sheet)
+                df.columns = df.columns.str.replace(' ', '').str.strip()
+                col = next((c for c in NAME_COLS if c in df.columns), None)
+                if col:
+                    found = df[col].dropna().astype(str).str.strip().unique()
+                    names.update(found)
         except Exception as e:
             print(f"  [Excel] {path} 읽기 실패: {e}")
     return names
@@ -152,11 +156,12 @@ def apply_name_changes(name_changes: dict) -> int:
                 df = xl.parse(sheet)
                 df.columns = df.columns.str.replace(' ', '').str.strip()
 
-                if NAME_COL in df.columns:
+                col = next((c for c in NAME_COLS if c in df.columns), None)
+                if col:
                     for old, new in name_changes.items():
-                        mask = df[NAME_COL] == old
+                        mask = df[col] == old
                         if mask.any():
-                            df.loc[mask, NAME_COL] = new
+                            df.loc[mask, col] = new
                             cnt = int(mask.sum())
                             print(f"    [{path}] '{sheet}' 시트: {old} → {new} ({cnt}행)")
                             total += cnt
