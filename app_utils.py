@@ -11,6 +11,9 @@ LIMIT_UP_THRESHOLD = 29.5  # 상한가 기준 (%)
 CACHE_TTL = 3600           # 캐시 유효 시간 (초)
 MAX_SEARCH_RESULTS = 100   # 검색 결과 최대 표시 수
 CACHE_DIR = ".cache"       # 캐시 파일 저장 폴더
+CACHE_SCHEMA_VERSION = "_v2"
+
+CODE_COLS = ['종목코드', '단축코드', '코드', 'Code', 'code', 'StockCode', 'stock_code']
 
 # ---------------------------------------------------------
 # 캐시 관리 함수
@@ -32,7 +35,7 @@ def get_cache_path(original_path, suffix=""):
     ensure_cache_dir()
     # 파일명에서 확장자 제거하고 .pkl 확장자 추가
     base_name = os.path.basename(original_path).replace(".xlsx", "").replace(".csv", "")
-    return os.path.join(CACHE_DIR, f"{base_name}{suffix}.pkl")
+    return os.path.join(CACHE_DIR, f"{base_name}{suffix}{CACHE_SCHEMA_VERSION}.pkl")
 
 def load_from_cache(cache_path, original_path):
     """캐시에서 데이터 로드 (원본 파일이 변경되지 않았을 때만)"""
@@ -69,11 +72,44 @@ def clean_columns(df):
     df.columns = df.columns.str.replace(" ", "").str.strip()
     rename_map = {
         '종목이름': '종목명', '종목': '종목명',
+        **{col: '종목코드' for col in CODE_COLS if col != '종목코드'},
         '주요상승이유': '상승이유', '주요상승이유및관련이슈': '상승이유', '이슈': '상승이유',
         '관련테마': '테마', '등락률': '상승률', '일자': '날짜',
         '관련테마_전체': '테마_전체', '관련테마전체': '테마_전체'
     }
     df.rename(columns=rename_map, inplace=True)
+    normalize_stock_codes(df)
+    return df
+
+def normalize_stock_code(value):
+    """종목코드를 검색/조인에 안전한 문자열로 정규화"""
+    if pd.isna(value):
+        return ""
+
+    if isinstance(value, float):
+        if value.is_integer():
+            value = int(value)
+        else:
+            value = str(value)
+
+    code = str(value).strip()
+    if not code or code.lower() in ('nan', 'none', 'nat'):
+        return ""
+
+    if code.endswith('.0') and code[:-2].isdigit():
+        code = code[:-2]
+
+    code = code.replace("'", "").replace('"', "").strip().upper()
+    if code.startswith('A') and len(code) == 7 and code[1:].isdigit():
+        code = code[1:]
+    if code.isdigit():
+        code = code.zfill(6)
+    return code
+
+def normalize_stock_codes(df):
+    """DataFrame의 종목코드 컬럼을 문자열 코드로 정규화"""
+    if '종목코드' in df.columns:
+        df['종목코드'] = df['종목코드'].apply(normalize_stock_code)
     return df
 
 def convert_rise_rate(rise_rate_origin):
@@ -276,6 +312,8 @@ def load_theme_data():
         
         # 필요한 컬럼만 선택 및 정리
         cols_to_keep = ['종목명', '테마_전체']
+        if '종목코드' in df.columns:
+            cols_to_keep.insert(1, '종목코드')
         if '핵심요약' in df.columns:
             cols_to_keep.append('핵심요약')
             

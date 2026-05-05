@@ -5,7 +5,7 @@ from app_utils import (
     LIMIT_UP_THRESHOLD, MAX_SEARCH_RESULTS,
     clean_columns, convert_rise_rate, format_date, render_theme_badge,
     find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data,
-    load_name_aliases
+    load_name_aliases, normalize_stock_code
 )
 
 # ---------------------------------------------------------
@@ -77,21 +77,195 @@ if '종목명' not in df_sangcheon.columns:
     st.error("데이터에서 '종목명' 컬럼을 찾을 수 없습니다.")
     st.stop()
 
-# 종목명 리스트 추출
-stock_list = df_sangcheon['종목명'].dropna().unique().tolist()
-stock_list = sorted([str(s) for s in stock_list if pd.notna(s)])
+df_sangcheon['종목명'] = df_sangcheon['종목명'].astype(str).str.strip()
+if '종목코드' not in df_sangcheon.columns:
+    df_sangcheon['종목코드'] = ""
+else:
+    df_sangcheon['종목코드'] = df_sangcheon['종목코드'].apply(normalize_stock_code)
 
-# 사명 변경 별칭 맵 구성
-# alias_display_map: "수산중공업 (→ 수산세보틱스)" → "수산세보틱스"  (검색 선택용)
-# current_to_old:   "수산세보틱스" → "수산중공업"                    (상세 표시용)
-alias_display_map = {
-    f"{old} (→ {new})": new
-    for old, new in name_aliases.items()
-    if new in stock_list
-}
-current_to_old = {new: old for old, new in name_aliases.items()}
+use_stock_code = df_sangcheon['종목코드'].astype(bool).any()
+if not use_stock_code:
+    st.warning("종목코드 컬럼이 없어 종목명 기준으로 검색합니다. 사명 변경 추적 정확도를 높이려면 엑셀에 종목코드를 유지해주세요.")
+
+def clean_name(value):
+    if pd.isna(value):
+        return ""
+    return str(value).strip()
+
+def resolve_alias_name(name):
+    """A→B→C처럼 여러 번 바뀐 사명을 최종 사명으로 정리"""
+    current = clean_name(name)
+    seen = set()
+    while current in name_aliases and current not in seen:
+        seen.add(current)
+        next_name = clean_name(name_aliases[current])
+        if not next_name or next_name == current:
+            break
+        current = next_name
+    return current
+
+def make_stock_key(code, name):
+    code = normalize_stock_code(code)
+    if use_stock_code and code:
+        return code
+    return clean_name(name)
+
+def assign_stock_keys(df):
+    """각 데이터프레임에 빠른 조회용 종목 키를 붙임"""
+    if df is None or df.empty or '종목명' not in df.columns:
+        return df
+
+    df['종목명'] = df['종목명'].astype(str).str.strip()
+    if '종목코드' in df.columns:
+        df['종목코드'] = df['종목코드'].apply(normalize_stock_code)
+
+    if use_stock_code and '종목코드' in df.columns:
+        df['__stock_key'] = df['종목코드'].where(df['종목코드'].astype(bool), df['종목명'])
+    else:
+        df['__stock_key'] = df['종목명']
+
+    df['__stock_key'] = df['__stock_key'].astype(str).str.strip()
+    return df
+
+df_sangcheon = assign_stock_keys(df_sangcheon)
+df_company_overview = assign_stock_keys(df_company_overview)
+df_themes = assign_stock_keys(df_themes)
+df_analysis = assign_stock_keys(df_analysis)
+
+names_by_key = {}
+name_to_keys = {}
+latest_name_by_key = {}
+
+stock_pairs = df_sangcheon[['__stock_key', '종목명']].dropna().drop_duplicates()
+stock_pairs = stock_pairs[
+    stock_pairs['__stock_key'].astype(str).str.strip().astype(bool)
+    & stock_pairs['종목명'].astype(str).str.strip().astype(bool)
+]
+
+for stock_key, stock_name in stock_pairs.itertuples(index=False, name=None):
+    names_by_key.setdefault(stock_key, set()).add(stock_name)
+    name_to_keys.setdefault(stock_name, set()).add(stock_key)
+
+latest_pairs = stock_pairs.drop_duplicates('__stock_key', keep='first')
+latest_name_by_key = dict(latest_pairs[['__stock_key', '종목명']].itertuples(index=False, name=None))
+
+for extra_df in [df_company_overview, df_themes, df_analysis]:
+    if extra_df is None or extra_df.empty or '종목명' not in extra_df.columns or '__stock_key' not in extra_df.columns:
+        continue
+    extra_pairs = extra_df[['__stock_key', '종목명']].dropna().drop_duplicates()
+    for extra_key, extra_name in extra_pairs.itertuples(index=False, name=None):
+        if extra_name and extra_key in names_by_key:
+            names_by_key.setdefault(extra_key, set()).add(extra_name)
+            name_to_keys.setdefault(extra_name, set()).add(extra_key)
+
+resolved_aliases = {}
+for old_name, new_name in name_aliases.items():
+    old_name = clean_name(old_name)
+    new_name = resolve_alias_name(new_name)
+    if old_name and new_name and old_name != new_name:
+        resolved_aliases[old_name] = new_name
+
+preferred_name_by_key = {}
+for old_name, new_name in resolved_aliases.items():
+    alias_keys = set()
+    alias_keys.update(name_to_keys.get(new_name, set()))
+    alias_keys.update(name_to_keys.get(old_name, set()))
+
+    for stock_key in alias_keys:
+        names_by_key.setdefault(stock_key, set()).update([old_name, new_name])
+        name_to_keys.setdefault(old_name, set()).add(stock_key)
+        name_to_keys.setdefault(new_name, set()).add(stock_key)
+        preferred_name_by_key[stock_key] = new_name
+
+stock_keys = sorted(
+    names_by_key.keys(),
+    key=lambda key: (preferred_name_by_key.get(key) or latest_name_by_key.get(key) or key).lower()
+)
+
+def get_display_name(stock_key):
+    return preferred_name_by_key.get(stock_key) or latest_name_by_key.get(stock_key) or stock_key
+
+def get_alias_names(stock_key):
+    display_name = get_display_name(stock_key)
+    return sorted(name for name in names_by_key.get(stock_key, set()) if name and name != display_name)
+
+def format_stock_option(stock_key):
+    display_name = get_display_name(stock_key)
+    code_text = f", {stock_key}" if use_stock_code else ""
+    aliases = get_alias_names(stock_key)
+    if aliases:
+        alias_text = ", ".join(aliases[:3])
+        if len(aliases) > 3:
+            alias_text += f" 외 {len(aliases) - 3}개"
+        return f"{display_name} ({alias_text}{code_text})"
+    return f"{display_name} ({stock_key})" if use_stock_code else display_name
+
+def matches_stock(stock_key, search_text):
+    if not search_text:
+        return True
+    search_lower = search_text.lower().strip()
+    haystack = [stock_key, get_display_name(stock_key), *names_by_key.get(stock_key, set())]
+    return any(search_lower in str(item).lower() for item in haystack if item)
+
+def get_auto_selected_stock_key(search_text, options):
+    """정확히 하나로 좁혀지거나 정확히 일치하면 바로 상세로 진입"""
+    if not search_text:
+        return None
+
+    search_text = search_text.strip()
+    search_lower = search_text.lower()
+    normalized_code = normalize_stock_code(search_text)
+
+    for stock_key in options:
+        candidates = [stock_key, get_display_name(stock_key), *names_by_key.get(stock_key, set())]
+        if normalized_code and stock_key == normalized_code:
+            return stock_key
+        if any(search_lower == str(item).lower() for item in candidates if item):
+            return stock_key
+
+    if len(options) == 1:
+        return options[0]
+
+    return None
+
+def resolve_stock_key_by_name(stock_name):
+    keys = sorted(name_to_keys.get(clean_name(stock_name), set()))
+    return keys[0] if keys else None
+
+def filter_stock_rows(df, stock_key, stock_name=None):
+    if df is None or df.empty:
+        return pd.DataFrame()
+
+    if '__stock_key' in df.columns:
+        rows = df[df['__stock_key'] == stock_key]
+        if not rows.empty:
+            return rows
+
+    if use_stock_code and stock_key and '종목코드' in df.columns:
+        rows = df[df['종목코드'] == stock_key]
+        if not rows.empty:
+            return rows
+
+    if '종목명' in df.columns:
+        candidate_names = set(names_by_key.get(stock_key, set()))
+        if stock_name:
+            candidate_names.add(clean_name(stock_name))
+        candidate_names.add(get_display_name(stock_key))
+        candidate_names = {name for name in candidate_names if name}
+        if candidate_names:
+            return df[df['종목명'].astype(str).str.strip().isin(candidate_names)]
+
+    return pd.DataFrame()
+
+def get_row_stock_key(row):
+    row_key = clean_name(row.get('__stock_key'))
+    if row_key:
+        return row_key
+    return make_stock_key(row.get('종목코드'), row.get('종목명'))
 
 # 세션 상태 초기화
+if 'selected_stock_code' not in st.session_state:
+    st.session_state.selected_stock_code = None
 if 'selected_stock_name' not in st.session_state:
     st.session_state.selected_stock_name = None
 if 'current_query' not in st.session_state:
@@ -100,11 +274,17 @@ if 'search_mode' not in st.session_state:
     st.session_state.search_mode = "종목명"
 
 # 버튼 클릭으로 종목 선택된 경우 처리
+if st.session_state.selected_stock_code:
+    st.session_state.current_query = st.session_state.selected_stock_code
+    st.session_state.selected_stock_code = None
+    st.session_state.search_mode = "종목명"
+    st.session_state.search_mode_radio = "종목명"
+
 if st.session_state.selected_stock_name:
-    st.session_state.current_query = st.session_state.selected_stock_name
+    resolved_key = resolve_stock_key_by_name(st.session_state.selected_stock_name)
+    st.session_state.current_query = resolved_key or st.session_state.selected_stock_name
     st.session_state.selected_stock_name = None
     st.session_state.search_mode = "종목명"
-    # 라디오 버튼 상태도 직접 업데이트 (Streamlit 위젯 상태)
     st.session_state.search_mode_radio = "종목명"
 
 # 검색 모드 변경 시 초기화 콜백
@@ -128,7 +308,8 @@ theme_results = None
 if search_mode == "종목명":
     # 현재 선택된 종목이 있으면 표시
     if st.session_state.current_query:
-        st.info(f"📌 현재 분석 중: **{st.session_state.current_query}**")
+        current_stock_name = get_display_name(st.session_state.current_query)
+        st.info(f"📌 현재 분석 중: **{current_stock_name}**")
         col1, col2 = st.columns([3, 1])
         with col1:
             query = st.session_state.current_query
@@ -138,43 +319,30 @@ if search_mode == "종목명":
                 st.rerun()
     else:
         # 검색어 입력
-        search_query = st.text_input("🔍 종목명 검색 (자동완성)", placeholder="예: 삼성전자...", key="stock_search")
+        search_query = st.text_input("🔍 종목명/구 사명/종목코드 검색", placeholder="예: 삼성전자, 005930...", key="stock_search")
         
-        # 필터링 (현재 사명 + 구 사명 별칭 동시 검색)
-        filtered_stocks = stock_list
-        filtered_aliases = []
-        if search_query:
-            search_lower = search_query.lower()
-            filtered_stocks = [s for s in stock_list if search_lower in s.lower()]
-            # 구 사명으로도 검색 가능 ("수산중공업 (→ 수산세보틱스)" 형태로 표시)
-            filtered_aliases = [
-                display for display in alias_display_map
-                if search_lower in display.lower()
-            ]
-
-        all_options = filtered_stocks + filtered_aliases
+        all_options = [stock_key for stock_key in stock_keys if matches_stock(stock_key, search_query)]
         if len(all_options) > MAX_SEARCH_RESULTS:
             all_options = all_options[:MAX_SEARCH_RESULTS]
             st.info(f"💡 검색 결과가 많아 {MAX_SEARCH_RESULTS}개만 표시됩니다.")
 
+        auto_selected_stock = get_auto_selected_stock_key(search_query, all_options)
+        if auto_selected_stock:
+            st.session_state.current_query = auto_selected_stock
+            query = auto_selected_stock
+
         # 종목 선택
-        if all_options:
+        if all_options and not auto_selected_stock:
             selected_stock = st.selectbox(
                 "📋 종목 선택",
                 options=[""] + all_options,
-                format_func=lambda x: "종목을 선택하세요..." if x == "" else x,
+                format_func=lambda x: "종목을 선택하세요..." if x == "" else format_stock_option(x),
                 key="stock_select"
             )
 
             if selected_stock:
-                # 별칭 선택 시 현재 사명으로 변환
-                actual = alias_display_map.get(selected_stock, selected_stock)
-                st.session_state.current_query = actual
-                query = actual
-                st.rerun()
-            elif search_query and search_query in stock_list:
-                st.session_state.current_query = search_query
-                query = search_query
+                st.session_state.current_query = selected_stock
+                query = selected_stock
                 st.rerun()
         else:
             if search_query:
@@ -186,15 +354,28 @@ else:  # 테마 검색
     if theme_query and df_themes is not None:
         # 벡터화된 검색 (빠름!)
         mask = df_themes['테마_전체'].str.lower().str.contains(theme_query.lower(), na=False)
-        matched_stocks = df_themes.loc[mask, '종목명'].unique().tolist()
+        if '__stock_key' in df_themes.columns:
+            matched_keys = df_themes.loc[mask, '__stock_key'].dropna().astype(str).str.strip().unique().tolist()
+            matched_keys = [key for key in matched_keys if key]
+        else:
+            matched_keys = []
+            seen_keys = set()
+            for _, matched_row in df_themes.loc[mask].iterrows():
+                stock_key = get_row_stock_key(matched_row)
+                if not stock_key:
+                    stock_key = resolve_stock_key_by_name(matched_row.get('종목명'))
+                if stock_key and stock_key not in seen_keys:
+                    matched_keys.append(stock_key)
+                    seen_keys.add(stock_key)
         
-        if matched_stocks:
+        if matched_keys:
             # 테마 이슈 상승률 기준으로 정렬
             theme_keyword = theme_query.lower()
             scored_results = []
             
-            for stock_name in matched_stocks:
-                stock_data = df_sangcheon[df_sangcheon['종목명'] == stock_name]
+            for stock_key in matched_keys:
+                stock_name = get_display_name(stock_key)
+                stock_data = filter_stock_rows(df_sangcheon, stock_key, stock_name)
                 theme_matched_rise = 0
                 theme_matched_count = 0
                 max_rise = 0
@@ -216,6 +397,7 @@ else:  # 테마 검색
                 score = (theme_matched_rise * 2) + (theme_matched_count * 5) + (max_rise * 0.5)
                 
                 scored_results.append({
+                    '종목코드': stock_key,
                     '종목명': stock_name,
                     '테마상승률': theme_matched_rise,
                     '테마상승횟수': theme_matched_count,
@@ -242,6 +424,7 @@ if theme_results:
         for i in range(0, len(theme_results), cols_per_row):
             cols = st.columns(cols_per_row)
             for j, stock_info in enumerate(theme_results[i:i+cols_per_row]):
+                stock_key = stock_info.get('종목코드')
                 stock_name = stock_info['종목명'] if isinstance(stock_info, dict) else stock_info
                 theme_rise = stock_info.get('테마상승률', 0) if isinstance(stock_info, dict) else 0
                 max_rise = stock_info.get('최고상승률', 0) if isinstance(stock_info, dict) else 0
@@ -254,8 +437,8 @@ if theme_results:
                     elif theme_rise > 0:
                         label = f"🎯 {stock_name}"
                     
-                    if st.button(label, key=f"theme_{theme_query}_{stock_name}", use_container_width=True):
-                        st.session_state.selected_stock_name = stock_name
+                    if st.button(label, key=f"theme_{theme_query}_{stock_key}", use_container_width=True):
+                        st.session_state.selected_stock_code = stock_key
                         st.rerun()
                     
                     # 상승률 표시
@@ -265,6 +448,7 @@ if theme_results:
                         st.caption(f"최고 {max_rise:.1f}%")
     else:
         for idx, stock_info in enumerate(theme_results, 1):
+            stock_key = stock_info.get('종목코드')
             stock_name = stock_info['종목명'] if isinstance(stock_info, dict) else stock_info
             theme_rise = stock_info.get('테마상승률', 0) if isinstance(stock_info, dict) else 0
             max_rise = stock_info.get('최고상승률', 0) if isinstance(stock_info, dict) else 0
@@ -277,8 +461,8 @@ if theme_results:
                 elif theme_rise > 0:
                     label = f"{idx}. 🎯 {stock_name}"
                 
-                if st.button(label, key=f"themelist_{theme_query}_{stock_name}", use_container_width=True):
-                    st.session_state.selected_stock_name = stock_name
+                if st.button(label, key=f"themelist_{theme_query}_{stock_key}", use_container_width=True):
+                    st.session_state.selected_stock_code = stock_key
                     st.rerun()
             with col2:
                 if theme_rise > 0:
@@ -288,10 +472,11 @@ if theme_results:
 
 # 종목 상세 분석 표시
 if query:
-    res = df_sangcheon[df_sangcheon['종목명'] == query].copy()
+    stock_name = get_display_name(query)
+    res = filter_stock_rows(df_sangcheon, query, stock_name).copy()
     
     if res.empty:
-        st.warning(f"'{query}' 종목의 데이터를 찾을 수 없습니다.")
+        st.warning(f"'{stock_name}' 종목의 데이터를 찾을 수 없습니다.")
     else:
         if '날짜' in res.columns:
             res = res.sort_values('날짜', ascending=False)
@@ -299,15 +484,20 @@ if query:
         row = res.iloc[0]
         
         st.markdown("---")
-        old_name = current_to_old.get(query)
-        st.subheader(f"📊 {query} 종목 분석")
-        if old_name:
-            st.caption(f"구 사명: {old_name}")
+        st.subheader(f"📊 {stock_name} 종목 분석")
+        alias_names = get_alias_names(query)
+        meta_parts = []
+        if use_stock_code:
+            meta_parts.append(f"종목코드: {query}")
+        if alias_names:
+            meta_parts.append(f"구/별칭: {', '.join(alias_names[:5])}")
+        if meta_parts:
+            st.caption(" | ".join(meta_parts))
         
         # 1. 기업개요
         summary_text = None
         if df_company_overview is not None and '종목명' in df_company_overview.columns:
-            overview_row = df_company_overview[df_company_overview['종목명'] == query]
+            overview_row = filter_stock_rows(df_company_overview, query, stock_name)
             if not overview_row.empty:
                 # 핵심요약 컬럼 찾기
                 summary_col = next((c for c in df_company_overview.columns if any(k in c for k in ['핵심요약', '3줄정리'])), None)
@@ -317,7 +507,7 @@ if query:
                         summary_text = str(val)
         
         if summary_text is None and df_themes is not None and '종목명' in df_themes.columns:
-            theme_sum_row = df_themes[df_themes['종목명'] == query]
+            theme_sum_row = filter_stock_rows(df_themes, query, stock_name)
             if not theme_sum_row.empty and '핵심요약' in df_themes.columns:
                 val = theme_sum_row.iloc[0]['핵심요약']
                 if pd.notna(val):
@@ -334,7 +524,7 @@ if query:
         theme_text = row.get('테마', '-')
         # df_themes에서 더 정확한 정보가 있으면 덮어쓰기
         if df_themes is not None:
-            theme_row = df_themes[df_themes['종목명'] == query]
+            theme_row = filter_stock_rows(df_themes, query, stock_name)
             if not theme_row.empty:
                 theme_text = theme_row.iloc[0]['테마_전체']
         
@@ -408,7 +598,7 @@ if query:
         
         found_analysis = False
         if df_analysis is not None and '종목명' in df_analysis.columns:
-            analysis_rows = df_analysis[df_analysis['종목명'] == query]
+            analysis_rows = filter_stock_rows(df_analysis, query, stock_name)
             if not analysis_rows.empty:
                 found_analysis = True
                 for _, r in analysis_rows.iterrows():
@@ -442,11 +632,14 @@ if query:
                 similarity_scores = []
                 
                 for _, theme_row in df_themes.iterrows():
-                    stock_name = theme_row.get('종목명', '')
+                    other_key = get_row_stock_key(theme_row)
+                    if not other_key:
+                        other_key = resolve_stock_key_by_name(theme_row.get('종목명'))
+                    other_name = get_display_name(other_key) if other_key else clean_name(theme_row.get('종목명'))
                     themes_str = theme_row.get('테마_전체', '')
                     
                     # 자기 자신 제외
-                    if stock_name == query:
+                    if other_key == query:
                         continue
                     
                     if pd.isna(themes_str):
@@ -464,7 +657,7 @@ if query:
                     
                     if common_count > 0:
                         # 해당 종목의 상승 데이터 분석 (종목정리 파일에서)
-                        stock_data = df_sangcheon[df_sangcheon['종목명'] == stock_name]
+                        stock_data = filter_stock_rows(df_sangcheon, other_key, other_name)
                         max_rise = 0
                         theme_matched_rise = 0  # 공통 테마 이슈로 상승한 최고 상승률
                         theme_matched_count = 0  # 공통 테마 이슈로 상승한 횟수
@@ -504,7 +697,8 @@ if query:
                         hybrid_score = (common_count * 10) + (theme_matched_rise * 2) + (theme_matched_count * 5) + (max_rise * 0.5)
                         
                         similarity_scores.append({
-                            '종목명': stock_name,
+                            '종목코드': other_key,
+                            '종목명': other_name,
                             '공통개수': common_count,
                             '최고상승률': max_rise,
                             '테마상승률': theme_matched_rise,
@@ -525,20 +719,22 @@ if query:
         if not similar_stocks:
             row_theme = row.get('테마')
             if row_theme and pd.notna(row_theme):
-                sims_df = df_sangcheon[(df_sangcheon['테마'] == row_theme) & (df_sangcheon['종목명'] != query)]
-                sims_df = sims_df.drop_duplicates('종목명')
+                sims_df = df_sangcheon[df_sangcheon['테마'] == row_theme].copy()
+                sims_df = sims_df[sims_df['__stock_key'] != query]
+                sims_df = sims_df.drop_duplicates('__stock_key')
                 
                 # 2순위도 상승률 기준 정렬
                 fallback_scores = []
-                for stock_name in sims_df['종목명'].unique():
-                    stock_data = df_sangcheon[df_sangcheon['종목명'] == stock_name]
+                for other_key in sims_df['__stock_key'].dropna().unique():
+                    other_name = get_display_name(other_key)
+                    stock_data = filter_stock_rows(df_sangcheon, other_key, other_name)
                     max_rise = 0
                     if not stock_data.empty and '상승률' in stock_data.columns:
                         for _, sr in stock_data.iterrows():
                             rise_val, _ = convert_rise_rate(sr.get('상승률'))
                             if rise_val is not None:
                                 max_rise = max(max_rise, rise_val)
-                    fallback_scores.append({'종목명': stock_name, '최고상승률': max_rise, '혼합점수': max_rise})
+                    fallback_scores.append({'종목코드': other_key, '종목명': other_name, '최고상승률': max_rise, '혼합점수': max_rise})
                 
                 fallback_scores.sort(key=lambda x: x['최고상승률'], reverse=True)
                 similar_stocks = fallback_scores[:5]
@@ -557,6 +753,7 @@ if query:
             
             cols = st.columns(len(similar_stocks))
             for i, stock_info in enumerate(similar_stocks):
+                stock_key = stock_info.get('종목코드')
                 stock_name = stock_info['종목명']
                 max_rise = stock_info.get('최고상승률', 0)
                 
@@ -566,8 +763,8 @@ if query:
                     if max_rise >= LIMIT_UP_THRESHOLD:
                         label = f"🔥 {stock_name}"
                     
-                    if st.button(label, key=f"sim_{query}_{stock_name}", use_container_width=True):
-                        st.session_state.selected_stock_name = stock_name
+                    if st.button(label, key=f"sim_{query}_{stock_key}", use_container_width=True):
+                        st.session_state.selected_stock_code = stock_key
                         st.rerun()
                     
                     # 상승률 표시 (테마 매칭 상승률 우선, 없으면 최고 상승률)
