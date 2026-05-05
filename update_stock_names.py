@@ -31,6 +31,9 @@ CODE_MAP_FILE = 'stock_code_map.json'
 # 구 사명→현재 사명 누적 이력 (앱 검색에서 구 사명으로도 찾을 수 있도록)
 ALIASES_FILE = 'name_aliases.json'
 
+# 종목코드를 못 찾은 항목 보고서
+UNRESOLVED_FILE = 'unresolved_stock_codes.json'
+
 # 업데이트 대상 Excel 파일 목록
 EXCEL_FILES = [
     '종목정리_종목순 정렬.xlsx',
@@ -239,6 +242,46 @@ def sync_aliases_from_duplicate_codes(
     return changed
 
 
+def save_unresolved_report(unresolved_rows: list[dict]):
+    """종목코드 미매칭 보고서를 저장하고 GitHub Actions warning을 출력"""
+    if not unresolved_rows:
+        if os.path.exists(UNRESOLVED_FILE):
+            os.remove(UNRESOLVED_FILE)
+        return
+
+    by_name = {}
+    for row in unresolved_rows:
+        name = row['name']
+        entry = by_name.setdefault(name, {
+            'name': name,
+            'rows': 0,
+            'locations': [],
+        })
+        entry['rows'] += int(row.get('rows', 0))
+        entry['locations'].append({
+            'file': row.get('file', ''),
+            'sheet': row.get('sheet', ''),
+            'rows': int(row.get('rows', 0)),
+        })
+
+    report = {
+        'unresolved_count': len(by_name),
+        'total_rows': sum(item['rows'] for item in by_name.values()),
+        'items': sorted(by_name.values(), key=lambda x: x['name']),
+    }
+
+    with open(UNRESOLVED_FILE, 'w', encoding='utf-8') as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    names = [item['name'] for item in report['items']]
+    preview = ', '.join(names[:20])
+    if len(names) > 20:
+        preview += f" 외 {len(names) - 20}개"
+
+    print(f"::warning title=종목코드 미매칭::{len(names)}개 종목의 코드를 찾지 못했습니다: {preview}")
+    print(f"    미매칭 보고서 저장: {UNRESOLVED_FILE}")
+
+
 # ── Excel 처리 ─────────────────────────────────────────────────
 
 def get_all_stock_records() -> list[dict]:
@@ -322,12 +365,13 @@ def apply_name_changes(name_changes: dict) -> int:
     return total
 
 
-def fill_missing_stock_codes(name_to_code: dict, aliases: dict | None = None, target_files: list[str] | None = None) -> int:
+def fill_missing_stock_codes(name_to_code: dict, aliases: dict | None = None, target_files: list[str] | None = None) -> tuple[int, list[dict]]:
     """엑셀의 빈 종목코드를 종목명 기준으로 채움. 기존 종목코드는 덮어쓰지 않음."""
     from openpyxl import load_workbook
 
     aliases = aliases or {}
     total = 0
+    unresolved = {}
     target_files = target_files or EXCEL_FILES
 
     for path in target_files:
@@ -367,6 +411,8 @@ def fill_missing_stock_codes(name_to_code: dict, aliases: dict | None = None, ta
 
                     code = resolve_code_by_name(name, name_to_code, aliases)
                     if not code:
+                        key = (path, ws.title, name)
+                        unresolved[key] = unresolved.get(key, 0) + 1
                         continue
 
                     cell = ws.cell(row=row_idx, column=code_col)
@@ -385,7 +431,12 @@ def fill_missing_stock_codes(name_to_code: dict, aliases: dict | None = None, ta
         except Exception as e:
             print(f"  [Excel] {path} 종목코드 입력 실패: {e}")
 
-    return total
+    unresolved_rows = [
+        {'file': file_name, 'sheet': sheet, 'name': name, 'rows': rows}
+        for (file_name, sheet, name), rows in sorted(unresolved.items())
+    ]
+
+    return total, unresolved_rows
 
 
 # ── 메인 ───────────────────────────────────────────────────────
@@ -467,7 +518,7 @@ def main():
 
     # 4-1) 빈 종목코드 자동 입력
     print("[4-1] 빈 종목코드 자동 입력...")
-    code_fill_count = fill_missing_stock_codes(code_map, aliases, args.target_file)
+    code_fill_count, unresolved_rows = fill_missing_stock_codes(code_map, aliases, args.target_file)
     if code_fill_count:
         print(f"    총 {code_fill_count}행 종목코드 입력 완료\n")
         excel_records = get_all_stock_records()
@@ -476,6 +527,7 @@ def main():
                 code_map[record['name']] = record['code']
     else:
         print("    입력할 빈 종목코드 없음\n")
+    save_unresolved_report(unresolved_rows)
 
     if args.fill_codes_only:
         save_code_map(code_map)
