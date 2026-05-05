@@ -31,7 +31,12 @@ jobs:
         run: |
           pip install --quiet pandas openpyxl finance-datareader requests
 
-      - name: 사명 변경 스크립트 실행
+      - name: 매일 업로드 파일 종목코드 자동 입력
+        if: github.event_name == 'push'
+        run: python update_stock_names.py --fill-codes-only --target-file "종목정리_종목순 정렬.xlsx"
+
+      - name: 주간 전체 사명 변경 점검
+        if: github.event_name != 'push'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python update_stock_names.py
