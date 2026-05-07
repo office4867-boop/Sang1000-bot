@@ -2,6 +2,7 @@ import pandas as pd
 import glob
 import os
 import pickle
+import json
 import streamlit as st
 
 # ---------------------------------------------------------
@@ -64,6 +65,17 @@ def save_to_cache(cache_path, data):
     except Exception as e:
         pass
 
+def clear_disk_cache():
+    """Streamlit 캐시와 별도로 저장한 pickle 캐시를 삭제"""
+    if not os.path.isdir(CACHE_DIR):
+        return
+
+    for path in glob.glob(os.path.join(CACHE_DIR, "*.pkl")):
+        try:
+            os.remove(path)
+        except Exception:
+            pass
+
 # ---------------------------------------------------------
 # 유틸리티 함수
 # ---------------------------------------------------------
@@ -111,6 +123,25 @@ def normalize_stock_codes(df):
     if '종목코드' in df.columns:
         df['종목코드'] = df['종목코드'].apply(normalize_stock_code)
     return df
+
+@st.cache_data(show_spinner=False, ttl=CACHE_TTL)
+def load_stock_code_map():
+    """stock_code_map.json 로드 - {종목명/구사명: 종목코드} 누적 매핑"""
+    path = "stock_code_map.json"
+    if not os.path.exists(path):
+        return {}
+
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception:
+        return {}
+
+    return {
+        str(name).strip(): normalize_stock_code(code)
+        for name, code in data.items()
+        if str(name).strip() and normalize_stock_code(code)
+    }
 
 def convert_rise_rate(rise_rate_origin):
     """상승률을 % 형식으로 변환 (소수점 형태도 처리)"""

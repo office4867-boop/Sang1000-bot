@@ -5,7 +5,7 @@ from app_utils import (
     LIMIT_UP_THRESHOLD, MAX_SEARCH_RESULTS,
     clean_columns, convert_rise_rate, format_date, render_theme_badge,
     find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data,
-    load_name_aliases, normalize_stock_code
+    load_name_aliases, load_stock_code_map, normalize_stock_code, clear_disk_cache
 )
 
 # ---------------------------------------------------------
@@ -39,6 +39,7 @@ with st.sidebar:
 
     if st.button("🔄 새로고침"):
         st.cache_data.clear()
+        clear_disk_cache()
         st.rerun()
 
 # 로직 결정
@@ -67,6 +68,7 @@ df_company_overview = load_company_overview()
 df_themes = load_theme_data()
 df_analysis = load_analysis_data()
 name_aliases = load_name_aliases()  # {구 사명: 현재 사명}
+stock_code_map = load_stock_code_map()  # {종목명/구 사명: 종목코드}
 
 st.success(f"✅ {source_msg}")
 
@@ -82,10 +84,6 @@ if '종목코드' not in df_sangcheon.columns:
     df_sangcheon['종목코드'] = ""
 else:
     df_sangcheon['종목코드'] = df_sangcheon['종목코드'].apply(normalize_stock_code)
-
-use_stock_code = df_sangcheon['종목코드'].astype(bool).any()
-if not use_stock_code:
-    st.warning("종목코드 컬럼이 없어 종목명 기준으로 검색합니다. 사명 변경 추적 정확도를 높이려면 엑셀에 종목코드를 유지해주세요.")
 
 def clean_name(value):
     if pd.isna(value):
@@ -103,6 +101,50 @@ def resolve_alias_name(name):
             break
         current = next_name
     return current
+
+def resolve_code_by_name(name):
+    """종목명/구 사명으로 누적 코드 매핑에서 종목코드 찾기"""
+    current = clean_name(name)
+    seen = set()
+
+    while current and current not in seen:
+        code = normalize_stock_code(stock_code_map.get(current, ""))
+        if code:
+            return code
+
+        seen.add(current)
+        next_name = clean_name(name_aliases.get(current, ""))
+        if not next_name or next_name == current:
+            break
+        current = next_name
+
+    return ""
+
+def fill_missing_stock_codes(df):
+    """엑셀에 빈 종목코드가 남아 있으면 stock_code_map.json으로 화면 로딩 시 보정"""
+    if df is None or df.empty or '종목명' not in df.columns:
+        return df
+
+    df['종목명'] = df['종목명'].astype(str).str.strip()
+    if '종목코드' not in df.columns:
+        df['종목코드'] = ""
+    else:
+        df['종목코드'] = df['종목코드'].apply(normalize_stock_code)
+
+    missing_mask = ~df['종목코드'].astype(bool)
+    if missing_mask.any():
+        df.loc[missing_mask, '종목코드'] = df.loc[missing_mask, '종목명'].apply(resolve_code_by_name)
+
+    return df
+
+df_sangcheon = fill_missing_stock_codes(df_sangcheon)
+df_company_overview = fill_missing_stock_codes(df_company_overview)
+df_themes = fill_missing_stock_codes(df_themes)
+df_analysis = fill_missing_stock_codes(df_analysis)
+
+use_stock_code = df_sangcheon['종목코드'].astype(bool).any()
+if not use_stock_code:
+    st.warning("종목코드 컬럼이 없어 종목명 기준으로 검색합니다. 사명 변경 추적 정확도를 높이려면 엑셀에 종목코드를 유지해주세요.")
 
 def make_stock_key(code, name):
     code = normalize_stock_code(code)
@@ -316,6 +358,7 @@ if search_mode == "종목명":
         with col2:
             if st.button("🔄 새 검색", use_container_width=True):
                 st.session_state.current_query = None
+                st.session_state.stock_search = ""
                 st.rerun()
     else:
         # 검색어 입력
@@ -329,7 +372,7 @@ if search_mode == "종목명":
         auto_selected_stock = get_auto_selected_stock_key(search_query, all_options)
         if auto_selected_stock:
             st.session_state.current_query = auto_selected_stock
-            query = auto_selected_stock
+            st.rerun()
 
         # 종목 선택
         if all_options and not auto_selected_stock:
