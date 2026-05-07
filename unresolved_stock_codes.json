@@ -1,0 +1,4195 @@
+{
+  "unresolved_count": 284,
+  "total_rows": 1684,
+  "items": [
+    {
+      "name": "APTC",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "CJ바이오사이언스",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "CTR모빌리티",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "DGP",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "DL건설",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "HD현대건설기게",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "HD현대건설기계",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "HD현대미포",
+      "rows": 13,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "HD현대인프라코어",
+      "rows": 26,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 8
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "HL디앤아이한라",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "IHQ",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "JNK히터",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "KH건설",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 11
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "KH전자",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "KH필룩스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "LB루셈",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "LS전선",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2026)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "MP대산",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "SBI핀테크솔루션즈",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "SBS컨텐츠허브",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "SBS콘텐츠허브",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "SK5호스팩",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "SK렌터카",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "TKG애강",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "고려시멘트",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "골든센츄리",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "광림",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "교보10호스팩",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "국내상장사 아님",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "국동",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "국보",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "까스텔바작",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "나노브릭",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "네온테크",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "넥스턴바이오",
+      "rows": 18,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "뉴지랩파마",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "다나와",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "다산솔루엔타",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "다올인베스트먼트",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "다윈시스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "대동전자",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "대림B&Co",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "대명소노시즌",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "대우부품",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "대유",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "대유플러스",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "더미동",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "덕성, 덕성우",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "덕신EPC",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "덕양산업",
+      "rows": 27,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "name": "동양피스톤",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "동일철강",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "디딤이앤에프",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "디스플레이텍",
+      "rows": 14,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "name": "디에이치오토스",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "디에이치오토웨어",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "디엔에이링크",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "딥마인드",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "라온테크",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "라이트론",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "라티스",
+      "rows": 17,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        }
+      ]
+    },
+    {
+      "name": "램테크놀로지",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "루트로닉",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "마이더스AI",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "맥스트",
+      "rows": 16,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "메디치바이오",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "메디프론",
+      "rows": 14,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        }
+      ]
+    },
+    {
+      "name": "메리츠증권",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "메리츠화재",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "무리P&P",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "미코바이오메드",
+      "rows": 25,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 11
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "name": "바른전자",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "바아이매트릭스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "바이오로그디바이스",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "바이옵트로",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "백광산업",
+      "rows": 14,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "베트남개발1",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "보광산업",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "브랜드엑스코퍼레이션",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "브릿지바이오테라퓨틱스",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "블레이드엔터테인먼트",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "블리츠웨이스튜디오",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "비상장사",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "비엔지티",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "비엘",
+      "rows": 16,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "name": "비올",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "비지에프에코머티리얼즈",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "비트나인",
+      "rows": 16,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "name": "빅토리콘텐츠",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "삼기이브이",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 12
+        }
+      ]
+    },
+    {
+      "name": "삼성머스트스팩5호",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "삼성스팩4호",
+      "rows": 13,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 12
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "삼성스팩6호",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "상상인인더스트리",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "상지카일룸",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "성보화학",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "세아특수강",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "세원이앤씨",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "세종공업",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "세토피아",
+      "rows": 16,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 15
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "세하",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "셀리버리",
+      "rows": 11,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "셀트리온헬스케어",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "소니드",
+      "rows": 26,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 14
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "솔고바이오",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "솔룩스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "스마트솔루션즈",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "스카이문스테크놀로지",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 13
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "스킨앤스킨",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "스튜디오산타클로스",
+      "rows": 11,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "시큐센",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "시티랩스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "신성통상",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "신세계건설",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "신시웨이",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "신풍제지",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "신한제6호스팩",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "쌍방울",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "씨유박스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "씨케이에이치",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "씨티프라퍼티",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "아모레G",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "아오센스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "아이씨케이",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "아이에스이커머스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "아이엘사이언스",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "아이오케이",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "아이윈플러스",
+      "rows": 14,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "아이티센",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "아티스트유나이티드",
+      "rows": 14,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 10
+        }
+      ]
+    },
+    {
+      "name": "알비케이그룹",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "알에프시스템즈",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "알톤모빌리티",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "알파홀딩스",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "애니젠",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "액서지21",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "액션스퀘어",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "에스맥",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에스메디",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에스에스페이",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에스에이티이엔지",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "에스엔유",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에스엘바이오닉스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에스유홀딩스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에스케이증권9호스팩",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에이디엠코리아",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "에이디칩스",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에이치앤비디자인",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "에이치이엠파마",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "에이트원",
+      "rows": 11,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "에이티세미콘",
+      "rows": 11,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "에이펙스인베스트먼트",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "에이프로젠H&G",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "에프앤리퍼블릭",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "에프엔에스텍",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엑서지21",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "엑스비스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2026)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엔비디아",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엔에스",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "엔에스이엔엠",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엔케이맥스",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "엔케이맥스 25",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엔피디",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엘비루셈",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "엘비세미콘",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엠디에스테크",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엠벤처투자",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "엠에프엠코리아",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "연우",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "영신금속",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "영풍정밀",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "영풍제지",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "오스템임플란트",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "오하임앤컴퍼니",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "와이아이케이",
+      "rows": 13,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 8
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "와이오엠",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "와이제이엠게임즈",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "와이팜",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "우수AMS",
+      "rows": 11,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2026)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "원방테크",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "웨스트라이즈",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "웰바이오텍",
+      "rows": 16,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 14
+        }
+      ]
+    },
+    {
+      "name": "위니아",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "윈텍",
+      "rows": 18,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 15
+        }
+      ]
+    },
+    {
+      "name": "윌링스",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "유니온커뮤니티",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "유바이오직스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "유비케어",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "유안타제8호스팩",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "율호",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "이넷",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "이노시스",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "이라이콤",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "이루다",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "이수스페셜티케미칼",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "테마별 종목(Gemini)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "이아이디",
+      "rows": 19,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 14
+        }
+      ]
+    },
+    {
+      "name": "이에이트",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "이엔드디",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "이엔코퍼레이션",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "이트론",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "이화전기",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "인스웨이브시스템즈",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "인우",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "인지디스플",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "인지디스플레이",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "인포마크",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "일진디스플레",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "제넨바이오",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "제노포커스",
+      "rows": 11,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 7
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "제닉스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "제이시스메디칼",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "제이준코스메틱",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "제일바이오",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "제주맥주",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "젬백스링크",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "조광ILI",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 14
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "종목 이름",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "줌인터넷",
+      "rows": 13,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "지니뮤직",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "지더블유바이텍",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "지앤비에스에코",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "지앤비에스엔지니어링",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "지오릿에너지",
+      "rows": 44,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 12
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 27
+        }
+      ]
+    },
+    {
+      "name": "지오씨엘",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 7
+        }
+      ]
+    },
+    {
+      "name": "초록뱀헬스케어",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "카나리아바이오",
+      "rows": 41,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 13
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 27
+        }
+      ]
+    },
+    {
+      "name": "케이씨코트렐",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "케이피에스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "켐온",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "코드네이처",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "코디엠",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "코리아센터",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "코센",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "코아시아옵틱스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "코엔텍",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "코오롱모빌리티그룹",
+      "rows": 20,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "코오롱이엔피",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "코웰패션",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "콤텍시스템",
+      "rows": 10,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "퀀텀온",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "큐로컴",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "큐리옥스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "큐리옥스바이오",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "크로바하이텍",
+      "rows": 2,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "크리앤사이언스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "클라우드에어",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "클로잇",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "클리노믹스",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "name": "타이곤모바일",
+      "rows": 8,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 5
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "태평양물산",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "텔레필드",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        }
+      ]
+    },
+    {
+      "name": "트루윈",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "트윙",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "티라유텍",
+      "rows": 12,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "name": "파멥신",
+      "rows": 16,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "포스코 ICT",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "포스코ICT",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "포스코케미칼",
+      "rows": 19,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 11
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "name": "포스크퓨처엠",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "포커스에이치엔에스",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "폴라리스제약",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "퓨처코어",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "프로스테믹스",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "name": "플러그에너지",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "피앤에스미캐닉스",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "피피아이",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "필핀텔",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "하이소닉",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "하이트로리튬",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "하이트론씨스템즈",
+      "rows": 5,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "name": "하이퍼코레이션",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "하인크코리아",
+      "rows": 30,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 21
+        }
+      ]
+    },
+    {
+      "name": "한국전자금융",
+      "rows": 6,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "한국중강",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "한국테크놀로지",
+      "rows": 9,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 6
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "한솔인티큐브",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "한일진공",
+      "rows": 7,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "name": "한일현대시멘트",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "한창바이오텍",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "name": "한화인더스트리얼솔루션즈",
+      "rows": 3,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 2
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2025)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "해성티피씨",
+      "rows": 15,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2022)",
+          "rows": 9
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 6
+        }
+      ]
+    },
+    {
+      "name": "현대ADM",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "시그널리포트 테마",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "협진",
+      "rows": 4,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2023)",
+          "rows": 3
+        },
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천정리(2026)",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "name": "휴림네트웍스",
+      "rows": 1,
+      "locations": [
+        {
+          "file": "종목정리_종목순 정렬.xlsx",
+          "sheet": "상천 정리(2024)",
+          "rows": 1
+        }
+      ]
+    }
+  ]
+}
