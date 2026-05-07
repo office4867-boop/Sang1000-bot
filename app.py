@@ -1,12 +1,41 @@
 import streamlit as st
 import pandas as pd
 import os
+import glob
+import json
 from app_utils import (
     LIMIT_UP_THRESHOLD, MAX_SEARCH_RESULTS,
     clean_columns, convert_rise_rate, format_date, render_theme_badge,
     find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data,
-    load_name_aliases, load_stock_code_map, normalize_stock_code, clear_disk_cache
+    load_name_aliases, normalize_stock_code
 )
+
+def clear_disk_cache():
+    """Streamlit 캐시와 별도로 저장한 pickle 캐시를 삭제"""
+    for path in glob.glob(os.path.join(".cache", "*.pkl")):
+        try:
+            os.remove(path)
+        except Exception:
+            pass
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def load_stock_code_map():
+    """stock_code_map.json 로드 - {종목명/구사명: 종목코드} 누적 매핑"""
+    path = "stock_code_map.json"
+    if not os.path.exists(path):
+        return {}
+
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return {}
+
+    return {
+        str(name).strip(): normalize_stock_code(code)
+        for name, code in data.items()
+        if str(name).strip() and normalize_stock_code(code)
+    }
 
 # ---------------------------------------------------------
 # 1. 페이지 설정
