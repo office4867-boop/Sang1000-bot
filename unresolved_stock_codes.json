@@ -1,6 +1,6 @@
 {
-  "unresolved_count": 302,
-  "total_rows": 1767,
+  "unresolved_count": 284,
+  "total_rows": 1684,
   "items": [
     {
       "name": "APTC",
@@ -10,17 +10,6 @@
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
           "rows": 2
-        }
-      ]
-    },
-    {
-      "name": "C&C",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
         }
       ]
     },
@@ -74,28 +63,6 @@
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
-          "rows": 1
-        }
-      ]
-    },
-    {
-      "name": "ELECTRIC",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
-      "name": "ENT",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
           "rows": 1
         }
       ]
@@ -228,28 +195,6 @@
       ]
     },
     {
-      "name": "JYP",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
-      "name": "JYP ENT.",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "KH건설",
       "rows": 12,
       "locations": [
@@ -314,22 +259,6 @@
       ]
     },
     {
-      "name": "LIG넥스원",
-      "rows": 2,
-      "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "LS전선",
       "rows": 1,
       "locations": [
@@ -348,17 +277,6 @@
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
           "rows": 4
-        }
-      ]
-    },
-    {
-      "name": "PLUS",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
         }
       ]
     },
@@ -401,17 +319,6 @@
       ]
     },
     {
-      "name": "SGA",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "SK5호스팩",
       "rows": 1,
       "locations": [
@@ -434,34 +341,12 @@
       ]
     },
     {
-      "name": "SM",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "TKG애강",
       "rows": 1,
       "locations": [
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
-          "rows": 1
-        }
-      ]
-    },
-    {
-      "name": "YG",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
           "rows": 1
         }
       ]
@@ -509,40 +394,13 @@
       ]
     },
     {
-      "name": "골프존뉴딘홀딩스",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "광림",
-      "rows": 6,
+      "rows": 5,
       "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
           "rows": 5
-        }
-      ]
-    },
-    {
-      "name": "광진윈텍",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
         }
       ]
     },
@@ -570,13 +428,8 @@
     },
     {
       "name": "국동",
-      "rows": 7,
+      "rows": 6,
       "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -591,18 +444,8 @@
     },
     {
       "name": "국보",
-      "rows": 9,
+      "rows": 7,
       "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -761,28 +604,8 @@
     },
     {
       "name": "대동전자",
-      "rows": 8,
+      "rows": 4,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -916,28 +739,12 @@
     },
     {
       "name": "동양피스톤",
-      "rows": 3,
+      "rows": 2,
       "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
           "rows": 2
-        }
-      ]
-    },
-    {
-      "name": "동원F&B",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
         }
       ]
     },
@@ -1087,34 +894,12 @@
       ]
     },
     {
-      "name": "락앤락",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "램테크놀로지",
       "rows": 1,
       "locations": [
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "시그널리포트 테마",
-          "rows": 1
-        }
-      ]
-    },
-    {
-      "name": "레고켐바이오",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
           "rows": 1
         }
       ]
@@ -1435,22 +1220,6 @@
       ]
     },
     {
-      "name": "비보존",
-      "rows": 2,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        }
-      ]
-    },
-    {
       "name": "비상장사",
       "rows": 1,
       "locations": [
@@ -1656,23 +1425,8 @@
     },
     {
       "name": "세아특수강",
-      "rows": 10,
+      "rows": 7,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -1719,28 +1473,8 @@
     },
     {
       "name": "세토피아",
-      "rows": 21,
+      "rows": 16,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 2
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
@@ -1904,28 +1638,8 @@
     },
     {
       "name": "스튜디오산타클로스",
-      "rows": 15,
+      "rows": 11,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -1984,28 +1698,8 @@
     },
     {
       "name": "신시웨이",
-      "rows": 7,
+      "rows": 3,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
@@ -2150,13 +1844,8 @@
     },
     {
       "name": "아이엘사이언스",
-      "rows": 5,
+      "rows": 4,
       "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천 정리(2024)",
@@ -2192,18 +1881,8 @@
     },
     {
       "name": "아이윈플러스",
-      "rows": 16,
+      "rows": 14,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천 정리(2024)",
@@ -2233,18 +1912,8 @@
     },
     {
       "name": "아이티센",
-      "rows": 9,
+      "rows": 7,
       "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천 정리(2024)",
@@ -2393,17 +2062,6 @@
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
-          "rows": 1
-        }
-      ]
-    },
-    {
-      "name": "에스앤더블유",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
           "rows": 1
         }
       ]
@@ -2686,23 +2344,8 @@
     },
     {
       "name": "엔케이맥스",
-      "rows": 18,
+      "rows": 15,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천 정리(2024)",
@@ -2974,33 +2617,8 @@
     },
     {
       "name": "우수AMS",
-      "rows": 18,
+      "rows": 11,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 3
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천 정리(2024)",
@@ -3148,18 +2766,8 @@
     },
     {
       "name": "유비케어",
-      "rows": 5,
+      "rows": 3,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -3523,28 +3131,8 @@
     },
     {
       "name": "제일바이오",
-      "rows": 11,
+      "rows": 5,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 3
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
@@ -3660,28 +3248,8 @@
     },
     {
       "name": "지더블유바이텍",
-      "rows": 8,
+      "rows": 3,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 2
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
@@ -3830,17 +3398,6 @@
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2022)",
           "rows": 6
-        }
-      ]
-    },
-    {
-      "name": "코닉오토",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
         }
       ]
     },
@@ -4507,28 +4064,8 @@
     },
     {
       "name": "한솔인티큐브",
-      "rows": 7,
+      "rows": 3,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
@@ -4618,18 +4155,8 @@
     },
     {
       "name": "현대ADM",
-      "rows": 3,
+      "rows": 1,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_관련테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "시그널리포트 테마",
@@ -4639,28 +4166,8 @@
     },
     {
       "name": "협진",
-      "rows": 8,
+      "rows": 4,
       "locations": [
-        {
-          "file": "stock_combined.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_종목정리_핵심정리 및 테마.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
-        {
-          "file": "시그널뷰_테마별 기업개요.xlsx",
-          "sheet": "Sheet1",
-          "rows": 1
-        },
         {
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
