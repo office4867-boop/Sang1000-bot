@@ -12,7 +12,7 @@ LIMIT_UP_THRESHOLD = 29.5  # 상한가 기준 (%)
 CACHE_TTL = 3600           # 캐시 유효 시간 (초)
 MAX_SEARCH_RESULTS = 100   # 검색 결과 최대 표시 수
 CACHE_DIR = ".cache"       # 캐시 파일 저장 폴더
-CACHE_SCHEMA_VERSION = "_v2"
+CACHE_SCHEMA_VERSION = "_v3"
 
 CODE_COLS = ['종목코드', '단축코드', '코드', 'Code', 'code', 'StockCode', 'stock_code']
 
@@ -149,10 +149,19 @@ def convert_rise_rate(rise_rate_origin):
         return None, '-'
     
     try:
-        rise_rate_str = str(rise_rate_origin).replace('%', '').strip()
+        original_text = str(rise_rate_origin).strip()
+        has_percent_mark = '%' in original_text
+        rise_rate_str = (
+            original_text.replace('\\%', '%')
+            .replace('%', '')
+            .replace('$', '')
+            .replace('+', '')
+            .replace(',', '')
+            .strip()
+        )
         rise_rate_val = float(rise_rate_str)
         
-        if rise_rate_val < 1:
+        if not has_percent_mark and abs(rise_rate_val) < 1:
             rise_rate_val = rise_rate_val * 100
         
         rise_rate_display = f"{rise_rate_val:.2f}%"
@@ -250,17 +259,18 @@ def load_data(file_input):
 def _parse_excel(xl):
     """ExcelFile 객체에서 데이터를 파싱"""
     sangcheon_list = []
-    signal_df = None
+    search_sheet_list = []
     
     for sheet in xl.sheet_names:
         if "상천" in sheet:
             df = xl.parse(sheet)
             df = clean_columns(df)
             sangcheon_list.append(df)
-        elif "시그널" in sheet:
+        elif any(keyword in sheet for keyword in ["시그널", "테마별 종목(Gemini)", "디지털 자산"]):
             df = xl.parse(sheet)
             df = clean_columns(df)
-            signal_df = df
+            df['__source'] = sheet
+            search_sheet_list.append(df)
     
     final_sangcheon = pd.DataFrame()
     if sangcheon_list:
@@ -269,6 +279,8 @@ def _parse_excel(xl):
             final_sangcheon['날짜'] = pd.to_datetime(final_sangcheon['날짜'], errors='coerce')
             final_sangcheon = final_sangcheon.sort_values('날짜', ascending=False)
     
+    signal_df = pd.concat(search_sheet_list, ignore_index=True, sort=False) if search_sheet_list else None
+
     return final_sangcheon, signal_df, None
 
 @st.cache_data(show_spinner=True, ttl=CACHE_TTL)
@@ -347,6 +359,8 @@ def load_theme_data():
             cols_to_keep.insert(1, '종목코드')
         if '핵심요약' in df.columns:
             cols_to_keep.append('핵심요약')
+        if '기업개요' in df.columns:
+            cols_to_keep.append('기업개요')
             
         if '종목명' in df.columns and '테마_전체' in df.columns:
             df = df.dropna(subset=['종목명'])

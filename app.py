@@ -1,57 +1,43 @@
 import streamlit as st
 import pandas as pd
-import os
-import glob
-import json
+import hmac
 from app_utils import (
     LIMIT_UP_THRESHOLD, MAX_SEARCH_RESULTS,
     clean_columns, convert_rise_rate, format_date, render_theme_badge,
     find_repo_file, load_data, load_company_overview, load_theme_data, load_analysis_data,
-    load_name_aliases, normalize_stock_code
+    load_name_aliases, normalize_stock_code, load_stock_code_map, clear_disk_cache
 )
-
-def clear_disk_cache():
-    """Streamlit 캐시와 별도로 저장한 pickle 캐시를 삭제"""
-    for path in glob.glob(os.path.join(".cache", "*.pkl")):
-        try:
-            os.remove(path)
-        except Exception:
-            pass
-
-@st.cache_data(show_spinner=False, ttl=3600)
-def load_stock_code_map():
-    """stock_code_map.json 로드 - {종목명/구사명: 종목코드} 누적 매핑"""
-    path = "stock_code_map.json"
-    if not os.path.exists(path):
-        return {}
-
-    try:
-        with open(path, encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception:
-        return {}
-
-    return {
-        str(name).strip(): normalize_stock_code(code)
-        for name, code in data.items()
-        if str(name).strip() and normalize_stock_code(code)
-    }
+from search_engine import build_search_index, load_keyword_aliases, search_documents
+from issue_analysis import (
+    analyze_hot_issues,
+    build_reaction_matrix,
+    build_theme_event_index,
+    group_issue_cycles,
+    score_stocks,
+)
+from ui_components import apply_page_style, render_hot_issue_dashboard, render_keyword_dashboard
 
 # ---------------------------------------------------------
 # 1. 페이지 설정
 # ---------------------------------------------------------
-st.set_page_config(page_title="주식 분석 봇", layout="wide")
+st.set_page_config(page_title="상천봇", layout="wide")
+apply_page_style()
 
-# --- [비밀번호 보안 기능 시작] ---
-MY_PASSWORD = "" 
-login_pass = st.sidebar.text_input("🔑 비밀번호를 입력하세요", type="password")
+try:
+    configured_password = str(st.secrets.get("APP_PASSWORD", "")).strip()
+except Exception:
+    configured_password = ""
 
-if login_pass != MY_PASSWORD:
-    st.error("비밀번호가 일치하지 않으면 내용을 볼 수 없습니다.")
-    st.stop()
-# --- [비밀번호 보안 기능 끝] ---
+if configured_password:
+    login_pass = st.sidebar.text_input("🔑 비밀번호", type="password")
+    if not hmac.compare_digest(login_pass, configured_password):
+        st.error("비밀번호를 확인해주세요.")
+        st.stop()
+else:
+    st.sidebar.caption("개발 모드: APP_PASSWORD가 설정되지 않아 로그인 없이 실행 중입니다.")
 
-st.title("📈 주식 데이터 분석 챗봇 (하이브리드)")
+st.title("📈 상천봇")
+st.caption("현재 이슈와 닮은 과거 부각 회차, 반복 수혜주와 대장주를 찾습니다.")
 st.markdown("---")
 
 # ---------------------------------------------------------
@@ -59,17 +45,13 @@ st.markdown("---")
 # ---------------------------------------------------------
 with st.sidebar:
     st.header("📂 데이터 설정")
-    
-    # [1] 파일 업로더
-    uploaded_file = st.file_uploader("새 엑셀 파일 업로드 (선택)", type=['xlsx'])
-    
-    # [2] 기본 파일 찾기
-    repo_file = find_repo_file()
-
-    if st.button("🔄 새로고침"):
-        st.cache_data.clear()
-        clear_disk_cache()
-        st.rerun()
+    with st.expander("파일 업로드 및 캐시 관리", expanded=False):
+        uploaded_file = st.file_uploader("새 엑셀 파일 업로드 (선택)", type=['xlsx'])
+        repo_file = find_repo_file()
+        if st.button("🔄 데이터 새로고침"):
+            st.cache_data.clear()
+            clear_disk_cache()
+            st.rerun()
 
 # 로직 결정
 final_file = None
@@ -167,6 +149,7 @@ def fill_missing_stock_codes(df):
     return df
 
 df_sangcheon = fill_missing_stock_codes(df_sangcheon)
+df_signal = fill_missing_stock_codes(df_signal)
 df_company_overview = fill_missing_stock_codes(df_company_overview)
 df_themes = fill_missing_stock_codes(df_themes)
 df_analysis = fill_missing_stock_codes(df_analysis)
@@ -199,6 +182,7 @@ def assign_stock_keys(df):
     return df
 
 df_sangcheon = assign_stock_keys(df_sangcheon)
+df_signal = assign_stock_keys(df_signal)
 df_company_overview = assign_stock_keys(df_company_overview)
 df_themes = assign_stock_keys(df_themes)
 df_analysis = assign_stock_keys(df_analysis)
@@ -220,7 +204,7 @@ for stock_key, stock_name in stock_pairs.itertuples(index=False, name=None):
 latest_pairs = stock_pairs.drop_duplicates('__stock_key', keep='first')
 latest_name_by_key = dict(latest_pairs[['__stock_key', '종목명']].itertuples(index=False, name=None))
 
-for extra_df in [df_company_overview, df_themes, df_analysis]:
+for extra_df in [df_signal, df_company_overview, df_themes, df_analysis]:
     if extra_df is None or extra_df.empty or '종목명' not in extra_df.columns or '__stock_key' not in extra_df.columns:
         continue
     extra_pairs = extra_df[['__stock_key', '종목명']].dropna().drop_duplicates()
@@ -307,6 +291,9 @@ def filter_stock_rows(df, stock_key, stock_name=None):
     if df is None or df.empty:
         return pd.DataFrame()
 
+    if df is df_sangcheon and stock_key in sangcheon_rows_by_key:
+        return sangcheon_rows_by_key[stock_key]
+
     if '__stock_key' in df.columns:
         rows = df[df['__stock_key'] == stock_key]
         if not rows.empty:
@@ -334,6 +321,105 @@ def get_row_stock_key(row):
         return row_key
     return make_stock_key(row.get('종목코드'), row.get('종목명'))
 
+
+# 종목 상세와 유사종목 계산에서 전체 이력을 반복 필터링하지 않도록 미리 그룹화한다.
+sangcheon_rows_by_key = {
+    stock_key: rows.copy()
+    for stock_key, rows in df_sangcheon.groupby('__stock_key', sort=False)
+    if clean_name(stock_key)
+}
+
+
+@st.cache_data(show_spinner="통합 검색 인덱스를 준비하고 있습니다.", ttl=3600)
+def cached_build_search_index(
+    sangcheon, signal, themes, company_overview, analysis, aliases, code_map
+):
+    return build_search_index(
+        sangcheon,
+        signal,
+        themes,
+        company_overview,
+        analysis,
+        aliases,
+        code_map,
+    )
+
+
+@st.cache_data(show_spinner=False, ttl=3600, max_entries=64)
+def cached_keyword_analysis(
+    index,
+    search_text,
+    keyword_alias_map,
+    operator,
+    sources,
+    start_date,
+    end_date,
+    minimum_rise,
+    sort_by,
+    trading_days,
+):
+    matches, applied = search_documents(
+        index,
+        search_text,
+        aliases=keyword_alias_map,
+        operator=operator,
+        sources=sources,
+        start_date=start_date,
+        end_date=end_date,
+        min_rise=minimum_rise,
+        sort_by=sort_by,
+    )
+    summaries, members, _ = group_issue_cycles(matches, trading_days)
+    reference_date = max(trading_days) if trading_days else None
+    ranking = score_stocks(matches, summaries, members, reference_date=reference_date)
+    matrix = build_reaction_matrix(members)
+    return matches, applied, summaries, members, ranking, matrix
+
+
+@st.cache_data(show_spinner="기간별 이슈 인덱스를 준비하고 있습니다.", ttl=3600)
+def cached_build_theme_event_index(sangcheon, keyword_alias_map):
+    return build_theme_event_index(sangcheon, keyword_alias_map)
+
+
+@st.cache_data(show_spinner=False, ttl=3600, max_entries=32)
+def cached_hot_issue_analysis(
+    theme_event_index,
+    all_trading_days,
+    start_date,
+    end_date,
+    compare_previous,
+    min_stocks,
+):
+    return analyze_hot_issues(
+        theme_event_index,
+        all_trading_days,
+        start_date,
+        end_date,
+        compare_previous=compare_previous,
+        min_stocks=min_stocks,
+    )
+
+
+keyword_aliases = load_keyword_aliases()
+search_index = cached_build_search_index(
+    df_sangcheon,
+    df_signal,
+    df_themes,
+    df_company_overview,
+    df_analysis,
+    name_aliases,
+    stock_code_map,
+)
+trading_days = tuple(
+    pd.to_datetime(df_sangcheon['날짜'], errors='coerce')
+    .dropna()
+    .dt.normalize()
+    .drop_duplicates()
+    .sort_values()
+    .tolist()
+)
+hot_issue_index = cached_build_theme_event_index(df_sangcheon, keyword_aliases)
+
 # 세션 상태 초기화
 if 'selected_stock_code' not in st.session_state:
     st.session_state.selected_stock_code = None
@@ -342,41 +428,58 @@ if 'selected_stock_name' not in st.session_state:
 if 'current_query' not in st.session_state:
     st.session_state.current_query = None
 if 'search_mode' not in st.session_state:
-    st.session_state.search_mode = "종목명"
+    st.session_state.search_mode = "종목 검색"
+
+if st.session_state.get('pending_issue_keyword'):
+    st.session_state.keyword_search = st.session_state.pop('pending_issue_keyword')
+    st.session_state.search_mode = "이슈 분석"
+    st.session_state.search_mode_radio = "이슈 분석"
 
 # 버튼 클릭으로 종목 선택된 경우 처리
 if st.session_state.selected_stock_code:
     st.session_state.current_query = st.session_state.selected_stock_code
     st.session_state.selected_stock_code = None
-    st.session_state.search_mode = "종목명"
-    st.session_state.search_mode_radio = "종목명"
+    st.session_state.search_mode = "종목 검색"
+    st.session_state.search_mode_radio = "종목 검색"
 
 if st.session_state.selected_stock_name:
     resolved_key = resolve_stock_key_by_name(st.session_state.selected_stock_name)
     st.session_state.current_query = resolved_key or st.session_state.selected_stock_name
     st.session_state.selected_stock_name = None
-    st.session_state.search_mode = "종목명"
-    st.session_state.search_mode_radio = "종목명"
+    st.session_state.search_mode = "종목 검색"
+    st.session_state.search_mode_radio = "종목 검색"
 
 # 검색 모드 변경 시 초기화 콜백
 def reset_search_state():
     st.session_state.current_query = None
 
 # 검색 모드 라디오 버튼
+search_modes = ["종목 검색", "이슈 분석"]
+if st.session_state.search_mode == "종목명":
+    st.session_state.search_mode = "종목 검색"
+if st.session_state.get("search_mode_radio") == "종목명":
+    st.session_state.search_mode_radio = "종목 검색"
+if st.session_state.search_mode in {"테마", "키워드"}:
+    st.session_state.search_mode = "이슈 분석"
+if st.session_state.get("search_mode_radio") in {"테마", "키워드"}:
+    st.session_state.search_mode_radio = "이슈 분석"
+if st.session_state.search_mode not in search_modes:
+    st.session_state.search_mode = "종목 검색"
+if st.session_state.get("search_mode_radio") not in search_modes:
+    st.session_state.search_mode_radio = st.session_state.search_mode
 search_mode = st.radio(
     "검색 모드", 
-    ["종목명", "테마"], 
+    search_modes,
     horizontal=True, 
     key="search_mode_radio", 
-    index=0 if st.session_state.search_mode == "종목명" else 1,
+    index=None,
     on_change=reset_search_state
 )
 st.session_state.search_mode = search_mode
 
 query = None
-theme_results = None
 
-if search_mode == "종목명":
+if search_mode == "종목 검색":
     # 현재 선택된 종목이 있으면 표시
     if st.session_state.current_query:
         current_stock_name = get_display_name(st.session_state.current_query)
@@ -385,7 +488,7 @@ if search_mode == "종목명":
         with col1:
             query = st.session_state.current_query
         with col2:
-            if st.button("🔄 새 검색", use_container_width=True):
+            if st.button("🔄 새 검색", width="stretch"):
                 st.session_state.current_query = None
                 st.session_state.stock_search = ""
                 st.rerun()
@@ -420,127 +523,159 @@ if search_mode == "종목명":
             if search_query:
                 st.warning(f"'{search_query}'와 일치하는 종목이 없습니다.")
 
-else:  # 테마 검색
-    theme_query = st.text_input("🔍 테마 검색", placeholder="예: 반도체, AI...", key="theme_search")
-    
-    if theme_query and df_themes is not None:
-        # 벡터화된 검색 (빠름!)
-        mask = df_themes['테마_전체'].str.lower().str.contains(theme_query.lower(), na=False)
-        if '__stock_key' in df_themes.columns:
-            matched_keys = df_themes.loc[mask, '__stock_key'].dropna().astype(str).str.strip().unique().tolist()
-            matched_keys = [key for key in matched_keys if key]
-        else:
-            matched_keys = []
-            seen_keys = set()
-            for _, matched_row in df_themes.loc[mask].iterrows():
-                stock_key = get_row_stock_key(matched_row)
-                if not stock_key:
-                    stock_key = resolve_stock_key_by_name(matched_row.get('종목명'))
-                if stock_key and stock_key not in seen_keys:
-                    matched_keys.append(stock_key)
-                    seen_keys.add(stock_key)
-        
-        if matched_keys:
-            # 테마 이슈 상승률 기준으로 정렬
-            theme_keyword = theme_query.lower()
-            scored_results = []
-            
-            for stock_key in matched_keys:
-                stock_name = get_display_name(stock_key)
-                stock_data = filter_stock_rows(df_sangcheon, stock_key, stock_name)
-                theme_matched_rise = 0
-                theme_matched_count = 0
-                max_rise = 0
-                
-                if not stock_data.empty and '상승률' in stock_data.columns:
-                    for _, sr in stock_data.iterrows():
-                        rise_val, _ = convert_rise_rate(sr.get('상승률'))
-                        reason = sr.get('상승이유', '')
-                        
-                        if rise_val is not None:
-                            max_rise = max(max_rise, rise_val)
-                            
-                            # 상승이유에 검색 테마 키워드가 포함되어 있는지 확인
-                            if pd.notna(reason) and theme_keyword in str(reason).lower():
-                                theme_matched_rise = max(theme_matched_rise, rise_val)
-                                theme_matched_count += 1
-                
-                # 점수 계산: 테마 상승률 우선, 그 다음 최고 상승률
-                score = (theme_matched_rise * 2) + (theme_matched_count * 5) + (max_rise * 0.5)
-                
-                scored_results.append({
-                    '종목코드': stock_key,
-                    '종목명': stock_name,
-                    '테마상승률': theme_matched_rise,
-                    '테마상승횟수': theme_matched_count,
-                    '최고상승률': max_rise,
-                    '점수': score
-                })
-            
-            # 점수 순으로 정렬
-            scored_results.sort(key=lambda x: x['점수'], reverse=True)
-            theme_results = scored_results
-        else:
-            st.warning(f"'{theme_query}' 테마가 포함된 종목을 찾을 수 없습니다.")
-    elif theme_query and df_themes is None:
-        st.warning("테마 데이터를 불러올 수 없습니다.")
+else:
+    keyword_tab, hot_issue_tab = st.tabs(["키워드로 분석", "기간별 핫이슈"])
+    source_options = sorted(search_index['출처'].dropna().astype(str).unique().tolist())
+    min_trade_date = min(trading_days).date() if trading_days else pd.Timestamp.today().date()
+    max_trade_date = max(trading_days).date() if trading_days else pd.Timestamp.today().date()
 
-# 테마 검색 결과 표시
-if theme_results:
-    st.markdown("---")
-    st.subheader(f"🔍 테마 '{theme_query}' 검색 결과 ({len(theme_results)}개)")
-    st.caption("📌 해당 테마 이슈 상승률 순으로 정렬됨")
-    
-    if len(theme_results) > 10:
-        cols_per_row = 3
-        for i in range(0, len(theme_results), cols_per_row):
-            cols = st.columns(cols_per_row)
-            for j, stock_info in enumerate(theme_results[i:i+cols_per_row]):
-                stock_key = stock_info.get('종목코드')
-                stock_name = stock_info['종목명'] if isinstance(stock_info, dict) else stock_info
-                theme_rise = stock_info.get('테마상승률', 0) if isinstance(stock_info, dict) else 0
-                max_rise = stock_info.get('최고상승률', 0) if isinstance(stock_info, dict) else 0
-                
-                with cols[j]:
-                    # 버튼 라벨
-                    label = stock_name
-                    if theme_rise >= LIMIT_UP_THRESHOLD:
-                        label = f"🔥 {stock_name}"
-                    elif theme_rise > 0:
-                        label = f"🎯 {stock_name}"
-                    
-                    if st.button(label, key=f"theme_{theme_query}_{stock_key}", use_container_width=True):
-                        st.session_state.selected_stock_code = stock_key
-                        st.rerun()
-                    
-                    # 상승률 표시
-                    if theme_rise > 0:
-                        st.caption(f"테마상승 {theme_rise:.1f}%")
-                    elif max_rise > 0:
-                        st.caption(f"최고 {max_rise:.1f}%")
-    else:
-        for idx, stock_info in enumerate(theme_results, 1):
-            stock_key = stock_info.get('종목코드')
-            stock_name = stock_info['종목명'] if isinstance(stock_info, dict) else stock_info
-            theme_rise = stock_info.get('테마상승률', 0) if isinstance(stock_info, dict) else 0
-            max_rise = stock_info.get('최고상승률', 0) if isinstance(stock_info, dict) else 0
-            
-            col1, col2 = st.columns([4, 1])
-            with col1:
-                label = f"{idx}. {stock_name}"
-                if theme_rise >= LIMIT_UP_THRESHOLD:
-                    label = f"{idx}. 🔥 {stock_name}"
-                elif theme_rise > 0:
-                    label = f"{idx}. 🎯 {stock_name}"
-                
-                if st.button(label, key=f"themelist_{theme_query}_{stock_key}", use_container_width=True):
-                    st.session_state.selected_stock_code = stock_key
-                    st.rerun()
-            with col2:
-                if theme_rise > 0:
-                    st.caption(f"{theme_rise:.1f}%")
-                elif max_rise > 0:
-                    st.caption(f"{max_rise:.1f}%")
+    with keyword_tab:
+        keyword_query = st.text_input(
+            "🔍 이슈 키워드",
+            placeholder="예: 반도체, HBM, 유리기판, CXL, 원전...",
+            key="keyword_search",
+        )
+        with st.expander("검색 조건", expanded=True):
+            option_col, sort_col, rise_col = st.columns([1.2, 1.2, 1])
+            with option_col:
+                operator_label = st.radio(
+                    "단어 조건",
+                    ["모든 단어 포함 (AND)", "하나라도 포함 (OR)"],
+                    horizontal=False,
+                    key="keyword_operator",
+                )
+            with sort_col:
+                keyword_sort = st.selectbox(
+                    "정렬",
+                    ["관련도순", "최신순", "최고 상승률순"],
+                    key="keyword_sort",
+                )
+            with rise_col:
+                minimum_rise = st.number_input(
+                    "최소 상승률(%)",
+                    min_value=0.0,
+                    max_value=100.0,
+                    value=0.0,
+                    step=1.0,
+                    key="keyword_min_rise",
+                )
+
+            source_filter = st.multiselect(
+                "검색 출처",
+                source_options,
+                default=source_options,
+                key="keyword_sources",
+                help="테마·상승이유·기업개요·뉴스를 한 번에 검색합니다. 모두 해제하면 전체 출처를 검색합니다.",
+            )
+            selected_period = st.date_input(
+                "기간",
+                value=(min_trade_date, max_trade_date),
+                min_value=min_trade_date,
+                max_value=max_trade_date,
+                key="keyword_period",
+            )
+
+        if keyword_query.strip():
+            operator = "AND" if operator_label.startswith("모든") else "OR"
+            filtered_sources = (
+                tuple(source_filter)
+                if source_filter and set(source_filter) != set(source_options)
+                else tuple()
+            )
+            start_date = end_date = None
+            if isinstance(selected_period, (tuple, list)) and len(selected_period) == 2:
+                selected_start, selected_end = selected_period
+                if selected_start != min_trade_date or selected_end != max_trade_date:
+                    start_date, end_date = selected_start, selected_end
+
+            keyword_dashboard_data = cached_keyword_analysis(
+                search_index,
+                keyword_query.strip(),
+                keyword_aliases,
+                operator,
+                filtered_sources,
+                start_date,
+                end_date,
+                minimum_rise,
+                keyword_sort,
+                trading_days,
+            )
+            matches, applied_terms, cycle_summaries, cycle_members, ranking, matrix = keyword_dashboard_data
+            selected_keyword_stock = render_keyword_dashboard(
+                keyword_query.strip(),
+                applied_terms,
+                matches,
+                cycle_summaries,
+                cycle_members,
+                ranking,
+                matrix,
+            )
+            if selected_keyword_stock:
+                st.session_state.selected_stock_code = selected_keyword_stock
+                st.rerun()
+
+    with hot_issue_tab:
+        period_col, compare_col, stock_col = st.columns([1.4, 1, 1])
+        with period_col:
+            hot_period = st.selectbox(
+                "분석 기간",
+                ["최근 5거래일", "최근 20거래일", "최근 60거래일", "최근 120거래일", "올해", "직접 설정"],
+                index=1,
+                key="hot_issue_period",
+            )
+        with compare_col:
+            compare_previous = st.checkbox(
+                "이전 동일 기간과 비교",
+                value=True,
+                key="hot_issue_compare",
+            )
+        with stock_col:
+            min_hot_stocks = st.number_input(
+                "최소 상승 종목 수",
+                min_value=1,
+                max_value=30,
+                value=2,
+                step=1,
+                key="hot_issue_min_stocks",
+            )
+
+        hot_start = min_trade_date
+        hot_end = max_trade_date
+        if hot_period == "직접 설정":
+            default_start = trading_days[max(0, len(trading_days) - 20)].date() if trading_days else min_trade_date
+            custom_period = st.date_input(
+                "직접 기간",
+                value=(default_start, max_trade_date),
+                min_value=min_trade_date,
+                max_value=max_trade_date,
+                key="hot_issue_custom_period",
+            )
+            if isinstance(custom_period, (tuple, list)) and len(custom_period) == 2:
+                hot_start, hot_end = custom_period
+        elif hot_period == "올해":
+            year_days = [day for day in trading_days if day.year == max(trading_days).year]
+            hot_start = (year_days[0] if year_days else min(trading_days)).date()
+        else:
+            period_count = {
+                "최근 5거래일": 5,
+                "최근 20거래일": 20,
+                "최근 60거래일": 60,
+                "최근 120거래일": 120,
+            }[hot_period]
+            hot_start = trading_days[max(0, len(trading_days) - period_count)].date()
+
+        hot_ranking, hot_events, hot_metadata = cached_hot_issue_analysis(
+            hot_issue_index,
+            trading_days,
+            hot_start,
+            hot_end,
+            compare_previous,
+            int(min_hot_stocks),
+        )
+        selected_hot_issue = render_hot_issue_dashboard(hot_ranking, hot_events, hot_metadata)
+        if selected_hot_issue:
+            st.session_state.pending_issue_keyword = selected_hot_issue
+            st.rerun()
 
 # 종목 상세 분석 표시
 if query:
@@ -835,7 +970,7 @@ if query:
                     if max_rise >= LIMIT_UP_THRESHOLD:
                         label = f"🔥 {stock_name}"
                     
-                    if st.button(label, key=f"sim_{query}_{stock_key}", use_container_width=True):
+                    if st.button(label, key=f"sim_{query}_{stock_key}", width="stretch"):
                         st.session_state.selected_stock_code = stock_key
                         st.rerun()
                     

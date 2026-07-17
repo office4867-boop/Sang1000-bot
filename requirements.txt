@@ -1,7 +1,9 @@
 streamlit
+altair
 pandas
 openpyxl
 requests
 finance-datareader
 python-dotenv
 google-genai
+pytest
