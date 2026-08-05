@@ -1,6 +1,6 @@
 {
-  "unresolved_count": 283,
-  "total_rows": 1683,
+  "unresolved_count": 282,
+  "total_rows": 1682,
   "items": [
     {
       "name": "APTC",
@@ -266,17 +266,6 @@
           "file": "종목정리_종목순 정렬.xlsx",
           "sheet": "상천정리(2023)",
           "rows": 4
-        }
-      ]
-    },
-    {
-      "name": "RF머티리얼즈",
-      "rows": 1,
-      "locations": [
-        {
-          "file": "종목정리_종목순 정렬.xlsx",
-          "sheet": "상천정리(2026)",
-          "rows": 1
         }
       ]
     },
